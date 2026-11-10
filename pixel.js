@@ -1,8 +1,9 @@
 /* Meta Pixel for Escritura/Letra sales pages.
- * To activate: set META_PIXEL_ID below to the real pixel ID, then redeploy.
  * Purchase must be configured in Hotmart checkout — never fire Purchase here.
+ * One fbq('track') call is delivered to every pixel initialized below.
  */
 const META_PIXEL_ID = '1798414894710698';
+const META_PIXEL_ID_CALIGRAFIA_R3 = '1139101915369396';
 
 (function () {
   if (!META_PIXEL_ID) return;
@@ -25,6 +26,7 @@ const META_PIXEL_ID = '1798414894710698';
   })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
   fbq('init', META_PIXEL_ID);
+  if (META_PIXEL_ID_CALIGRAFIA_R3) fbq('init', META_PIXEL_ID_CALIGRAFIA_R3);
   fbq('track', 'PageView');
 
   document.addEventListener(
