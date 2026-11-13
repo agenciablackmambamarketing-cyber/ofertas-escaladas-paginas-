@@ -128,7 +128,14 @@ section.block{padding:58px 0}
  .hero h1{font-size:clamp(30px,8.3vw,41px);margin-bottom:9px}
  .hero .sub{font-size:15px;line-height:1.38}
  .hero-photo img{height:245px;object-position:50% 27%}
- .eyescroll{margin-top:12px}
+ /* Centralização da Hero apenas em telas de celular. */
+ .hero-copy{width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
+ .hero .eyebrow{display:block;width:100%;text-align:center;margin-left:auto;margin-right:auto}
+ .hero h1{width:100%;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance}
+ .hero .sub{width:100%;max-width:560px;margin-left:auto;margin-right:auto;text-align:center}
+ .eyescroll{margin:12px auto 0;text-align:center;width:100%}
+ .hero-photo{margin-left:auto;margin-right:auto}
+ .hero-photo .expert-ribbon{justify-content:center;text-align:center}
  .bonus-card{grid-template-columns:39% 61%}
  .bonus-card .content{padding:16px 14px}
  .bonus-card h3{font-size:18px}
