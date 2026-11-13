@@ -120,47 +120,93 @@ section.block{padding:58px 0}
 .pack b{font-size:35px}.pack span{font-size:12px}.offer-card{padding:30px 18px}.checkout-button{font-size:18px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.checkout-button{transition:none}}
-.visual-examples{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:24px}.visual-examples figure{margin:0;background:#fff;border:1px solid #eadfd6;border-radius:15px;overflow:hidden}.visual-examples img{width:100%;display:block;aspect-ratio:3/2;object-fit:contain}.visual-examples figcaption{padding:13px 17px;font-size:13px;color:#69575d;font-weight:700}@media(max-width:740px){.visual-examples{grid-template-columns:1fr}} </style>
+.visual-examples{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:24px}.visual-examples figure{margin:0;background:#fff;border:1px solid #eadfd6;border-radius:15px;overflow:hidden}.visual-examples img{width:100%;display:block;aspect-ratio:3/2;object-fit:contain}.visual-examples figcaption{padding:13px 17px;font-size:13px;color:#69575d;font-weight:700}@media(max-width:740px){.visual-examples{grid-template-columns:1fr}} 
+/* v3: sequência visual com headline acima da expert e venda orientada a faturamento */
+@media(max-width:740px){
+ .hero-photo{order:0}
+ .hero-inner{padding:19px 0 25px;gap:15px}
+ .hero h1{font-size:clamp(30px,8.3vw,41px);margin-bottom:9px}
+ .hero .sub{font-size:15px;line-height:1.38}
+ .hero-photo img{height:245px;object-position:50% 27%}
+ .eyescroll{margin-top:12px}
+ .bonus-card{grid-template-columns:39% 61%}
+ .bonus-card .content{padding:16px 14px}
+ .bonus-card h3{font-size:18px}
+}
+.mech-art{height:174px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:15px;background:linear-gradient(140deg,#fff3e4,#f5d7d7);color:#4e2734;overflow:hidden}
+.art-overline{font-weight:900;letter-spacing:.1em;font-size:10px;color:#8e3e4d;text-align:center}
+.art-icons{font-size:41px;letter-spacing:.08em;white-space:nowrap}.art-icons span{font-size:35px}
+.art-pill{background:#fff;border-radius:30px;padding:7px 9px;font-size:10px;font-weight:800;box-shadow:0 3px 11px #5d26341d}
+.art-price{background:linear-gradient(140deg,#e8f4e8,#e3e4c9)}
+.art-receipt{width:93%;max-width:185px;background:#fff;border-radius:12px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:8px;font-size:10px;color:#4a5c4c;box-shadow:0 8px 15px #334b2820}
+.art-receipt strong{border-top:1px solid #ddd;padding-top:6px;font-size:11px;color:#226e4e}
+.art-promo{background:linear-gradient(140deg,#e2e6ff,#f2d9e9)}
+.art-phone{width:143px;height:160px;border:5px solid #40253a;border-radius:18px;background:white;box-shadow:0 9px 16px #41213a26;padding:8px;transform:rotate(-4deg);display:flex;flex-direction:column;gap:6px}
+.art-phonebar{font-size:8px;font-weight:900;color:#7b314f;text-align:center}.art-photo{font-size:25px;background:#fff0dc;border-radius:7px;text-align:center;padding:5px 0}
+.art-msg,.art-chat{font-size:9px;font-weight:750;padding:5px;border-radius:5px;background:#edebff;color:#463658}.art-chat{background:#d6f5e0;color:#23573d;text-align:right}
+.art-orders{background:linear-gradient(140deg,#e9ebed,#d5e6e0)}
+.art-order{background:#fff;border-radius:8px;padding:10px 11px;width:92%;font-weight:850;color:#355f53;font-size:11px;box-shadow:0 4px 9px #133a2c1a}
+.bonus-art{min-height:230px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:14px;text-align:center;gap:8px;color:#4a2633;background:linear-gradient(145deg,#f8d99b,#fff0d4)}
+.bonus-art-head{font-size:9px;font-weight:900;letter-spacing:.12em;opacity:.72}
+.bonus-art-icon{font-size:64px;line-height:1.1;filter:drop-shadow(0 5px 5px #0002)}
+.bonus-art strong{font-size:16px;line-height:1.13;letter-spacing:-.04em}
+.bonus-art-foot{font-size:9px;font-weight:900;letter-spacing:.1em;opacity:.72}
+.bonus-art.company{background:linear-gradient(145deg,#bfe4de,#edfbfa)}
+.bonus-art.package{background:linear-gradient(145deg,#e8c4d6,#fff2f5)}
+.bonus-art.calendar{background:linear-gradient(145deg,#dcc6f4,#f2eafb)}
+.refval{display:block;margin-top:12px;font-size:12px;color:#876273;font-weight:700}
+.refval strong{font-size:17px;color:#9e3d51;margin-left:5px;white-space:nowrap}
+.extra .refval{color:#ebcfd3}.extra .refval strong{color:#ffdc9e}
+.value-stack{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #e9ded5;text-align:left;padding:13px 3px;font-size:15px}
+.value-stack strong{white-space:nowrap;color:#7d3850}
+.ref-explainer{text-align:right;color:#8a7677;font-size:11px;margin:5px 0 25px}
+.offer-card .pricing-label{color:#742c43}
+.offer-card .checkout-button{margin-top:8px;font-size:clamp(17px,2.3vw,21px)}
+footer .wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-direction:column;text-align:center}
+footer span{font-size:13px;color:#eadadd}
+footer small{color:#c8b6ba;font-size:11px}
+@media(max-width:740px){.mech-art{height:145px}.bonus-art{min-height:200px}.bonus-art-icon{font-size:49px}.bonus-art strong{font-size:14px}}
+
+</style>
 </head>
 <body>
 <header class="brandbar"><div class="wrap"><div class="logo">Natal <em>de Encomendas</em></div><span class="brand-note">A temporada mais doce começa aqui</span></div></header>
 <main>
 <section class="hero" aria-labelledby="hero-headline"><div class="wrap hero-inner">
 <div class="hero-copy">
-<span class="eyebrow gold">Para confeiteiras que querem aproveitar o Natal</span>
-<h1 id="hero-headline">Imagine receber a mensagem: <em>“Quero fazer minha encomenda de Natal!”</em></h1>
-<p class="sub">E já ter seu <b>cardápio, preços e divulgação prontos</b> para responder com segurança. Esse é o Natal que você pode começar a preparar.</p>
-<div class="eyescroll">Veja como organizar o seu ↓</div>
+<span class="eyebrow gold">O Natal é a oportunidade. Seus doces são o negócio.</span>
+<h1 id="hero-headline">Faça seus doces virarem <em>dinheiro neste Natal.</em></h1>
+<p class="sub">Crie um cardápio que dá vontade de comprar, defina preços com margem e transforme mensagens no WhatsApp em oportunidades de encomenda.</p>
+<div class="eyescroll">Veja como colocar isso em prática ↓</div>
 </div>
 <div class="hero-photo">
 <img src="hero.webp" width="1500" height="1000" alt="Personagem de confeiteira sorrindo em cozinha decorada para o Natal" fetchpriority="high">
-<div class="expert-ribbon"><div><strong>O rosto da sua preparação de Natal</strong><br><small>Produtos, preços e pedidos sem improviso</small></div><small>Imagem ilustrativa</small></div>
+<div class="expert-ribbon"><div><strong>Prepare seu Natal para vender</strong><br><small>Produtos, preços, divulgação e pedidos num só plano</small></div></div>
 </div>
 </div></section>
 <section class="block future"><div class="wrap">
-<div class="center"><span class="eyebrow">Visualize o seu dezembro</span><h2>Seu talento merece um Natal mais organizado.</h2><p class="headcopy">Em vez de correr atrás de tudo na última hora, imagine ver sua operação pronta para atender as oportunidades que aparecerem.</p></div>
+<div class="center"><span class="eyebrow">Visualize o seu dezembro</span><h2>Seu doce na vitrine. Seu WhatsApp recebendo pedidos.</h2><p class="headcopy">Imagine apresentar seu cardápio de Natal com confiança, saber quanto cobrar e ter espaço para lucrar em cada encomenda.</p></div>
 <div class="after-grid">
 <figure class="after-card after-image" style="margin:0"><img src="produtos.webp" alt="Doces natalinos apresentados em uma composição de produtos" loading="lazy" width="1500" height="844"><figcaption>01 • Cardápio pronto para apresentar</figcaption></figure>
-<div class="after-card after-content"><h3>Você abre o WhatsApp. E sabe o que responder.</h3><ul class="after-list"><li><span class="check">✓</span>Produtos e valores definidos</li><li><span class="check">✓</span>Mensagem pronta para enviar</li><li><span class="check">✓</span>Prazos e capacidade organizados</li></ul><p class="after-note">Cenário ilustrativo de uma operação preparada, não resultado financeiro comprovado.</p></div>
+<div class="after-card after-content"><h3>Você abre o WhatsApp. E sabe o que responder.</h3><ul class="after-list"><li><span class="check">✓</span>Produtos e valores definidos</li><li><span class="check">✓</span>Mensagem pronta para enviar</li><li><span class="check">✓</span>Prazos e capacidade organizados</li></ul></div>
 </div>
 <div class="before-after">
-<div class="small-card old"><b>ANTES</b><strong>“Deixa eu ver quanto fica…”</strong></div>
-<div class="small-card new"><b>COM PLANEJAMENTO</b><strong>“Vou te mandar as opções e datas disponíveis.”</strong></div>
+<div class="small-card old"><b>ANTES</b><strong>“Nem sei quanto cobrar...”</strong></div>
+<div class="small-card new"><b>DEPOIS DE SE ORGANIZAR</b><strong>“Aqui está meu cardápio. Já pode escolher!”</strong></div>
 </div>
 </div></section>
 <section class="block stage"><div class="wrap">
 <div class="center"><span class="eyebrow gold">O mecanismo</span><h2>Seu Natal organizado em <span style="color:#ffdc9e">4 passos.</span></h2></div>
 <div class="four">
-<article class="four-card"><img src="produtos.webp" alt="Seleção de doces para definir o catálogo natalino" width="1500" height="844" loading="lazy"><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Escolha o que vender.</p></div></article>
-<article class="four-card"><img src="custos.webp" alt="Planilha e materiais para calcular o custo dos doces" width="1500" height="844" loading="lazy"><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Saiba quanto cobrar.</p></div></article>
-<article class="four-card"><img src="preparo.webp" alt="Preparação e apresentação de produtos natalinos" width="1500" height="844" loading="lazy"><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Mostre e divulgue.</p></div></article>
-<article class="four-card"><img src="pedidos.webp" alt="Organização visual de pedidos e produção de Natal" width="1500" height="844" loading="lazy"><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Organize cada entrega.</p></div></article>
+<article class="four-card"><div class="mech-art art-menu" role="img" aria-label="Imagem de um cardápio natalino com doces e kits"><div class="art-overline">SEU CARDÁPIO DE NATAL</div><div class="art-icons">🍪 <span>🍫</span> 🎁</div><div class="art-pill">Opções que dão vontade de pedir</div></div><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Escolha doces com potencial de encomenda.</p></div></article>
+<article class="four-card"><div class="mech-art art-price" role="img" aria-label="Imagem de um controle de custos e preço de venda"><div class="art-overline">PREÇO COM MARGEM</div><div class="art-receipt"><span>Custo dos ingredientes</span><b>✓</b><span>Embalagem e produção</span><b>✓</b><strong>Preço de venda</strong><strong>R$</strong></div></div><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Calcule custos e proteja sua margem.</p></div></article>
+<article class="four-card"><div class="mech-art art-promo" role="img" aria-label="Imagem de uma divulgação de Natal no celular"><div class="art-phone"><div class="art-phonebar">SEU NATAL 🎄</div><div class="art-photo">🎁🍫🍪</div><div class="art-msg">Cardápio disponível!</div><div class="art-chat">Quero encomendar! 💬</div></div></div><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Leve sua oferta ao Instagram e WhatsApp.</p></div></article>
+<article class="four-card"><div class="mech-art art-orders" role="img" aria-label="Imagem de uma lista de pedidos de Natal organizada"><div class="art-overline">CONTROLE DE ENCOMENDAS</div><div class="art-order">✓ Pedido confirmado</div><div class="art-order">✓ Pagamento anotado</div><div class="art-order">✓ Entrega programada</div></div><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Receba, organize e entregue os pedidos.</p></div></article>
 </div>
-<p class="caption-small center">O Método 4P é uma estrutura de planejamento, não uma garantia de encomendas.</p>
 </div></section>
 <section class="block result"><div class="wrap wish">
-<div><span class="eyebrow">Pense no depois</span><h2>Mais clareza para vender. Menos correria para produzir.</h2><ul><li><span>✓</span>Você apresenta uma oferta que o cliente entende.</li><li><span>✓</span>Você precifica com margem em mente.</li><li><span>✓</span>Você sabe quais pedidos consegue entregar.</li></ul></div>
-<div class="wish-image"><img src="pedidos.webp" alt="Materiais de organização de encomendas para confeitaria natalina" width="1500" height="844" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Um Natal com mais pedidos possíveis e menos improviso.</h3></div></div>
+<div><span class="eyebrow">Pense no dinheiro que pode circular no seu negócio</span><h2>Não é só fazer doces. É transformar o Natal em oportunidade de faturamento.</h2><ul><li><span>✓</span>Uma oferta pronta para divulgar e receber pedidos.</li><li><span>✓</span>Preços calculados para buscar lucro, não só movimento.</li><li><span>✓</span>Uma produção organizada para atender sem se perder.</li></ul></div>
+<div class="wish-image"><img src="pedidos.webp" alt="Materiais de organização de encomendas para confeitaria natalina" width="1500" height="844" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Mais oportunidades de encomenda. Mais controle do que sobra no caixa.</h3></div></div>
 </div></section>
 <section class="block kit"><div class="wrap">
 <div class="center"><span class="eyebrow">O treinamento</span><h2>6 módulos. Um caminho para colocar tudo em prática.</h2><p class="headcopy">Do cardápio ao atendimento — sem uma pilha de teoria para decorar.</p></div>
@@ -173,40 +219,43 @@ section.block{padding:58px 0}
 <article class="kit-piece"><span class="digit">06</span><h3>Produção e entregas</h3></article>
 </div><div class="visual-examples"><figure><img src="visual-cardapio.svg" alt="Demonstração ilustrativa de um cardápio natalino no papel e no celular" loading="lazy" width="720" height="480"><figcaption>Exemplo: apresentar produtos sem improvisar</figcaption></figure><figure><img src="visual-custos.svg" alt="Demonstração ilustrativa de controle de custos e mensagem de atendimento" loading="lazy" width="720" height="480"><figcaption>Exemplo: conferir custos e responder com segurança</figcaption></figure></div></div></section>
 <section class="block bonus-section" id="bonus"><div class="wrap">
-<div class="center"><span class="eyebrow gold">Ainda tem mais</span><h2>4 bônus para transformar ideias em produtos que você pode apresentar.</h2><p class="headcopy" style="color:#e8d1d6">Cada um resolve uma parte importante da sua campanha de Natal.</p></div>
+<div class="center"><span class="eyebrow gold">Ainda tem mais</span><h2>Bônus para vender mais e aumentar o valor de cada pedido.</h2><p class="headcopy" style="color:#e8d1d6">Ideias, novos clientes, embalagens e um plano para o pico do Natal.</p></div>
 <div class="bonus-grid">
-<article class="bonus-card"><img src="produtos.webp" width="1500" height="844" loading="lazy" alt="Kits e lembrancinhas de doces para o Natal"><div class="content"><span class="bonus-no">BÔNUS 01</span><h3>20 kits e lembrancinhas natalinas</h3><p>Ideias para o seu catálogo.</p></div></article>
-<article class="bonus-card"><img src="pedidos.webp" width="1500" height="844" loading="lazy" alt="Organização de pedidos e oportunidades de encomendas"><div class="content"><span class="bonus-no">BÔNUS 02</span><h3>Vendas para empresas e condomínios</h3><p>Abordagens para pedidos maiores.</p></div></article>
-<article class="bonus-card"><img src="preparo.webp" width="1500" height="844" loading="lazy" alt="Montagem e preparação de doces natalinos"><div class="content"><span class="bonus-no">BÔNUS 03</span><h3>Embalagens que valorizam seus doces</h3><p>Apresentações com mais valor percebido.</p></div></article>
-<article class="bonus-card"><img src="custos.webp" width="1500" height="844" loading="lazy" alt="Ferramentas de controle financeiro e planejamento natalino"><div class="content"><span class="bonus-no">BÔNUS 04</span><h3>Operação Últimas Encomendas</h3><p>Um plano de ação de 7 dias.</p></div></article>
+<article class="bonus-card">
+<div class="bonus-art gift" role="img" aria-label="Capa visual do bônus 20 kits e lembrancinhas natalinas"><span class="bonus-art-head">NATAL DE ENCOMENDAS</span><span class="bonus-art-icon" aria-hidden="true">🎁</span><strong>20 IDEIAS</strong><span class="bonus-art-foot">KITS & LEMBRANÇAS</span></div>
+<div class="content"><span class="bonus-no">BÔNUS 01</span><h3>20 kits e lembrancinhas natalinas</h3><p>Ideias para montar opções que as pessoas querem presentear.</p><span class="refval">Valor de referência <strong>R$ 37</strong></span></div></article>
+<article class="bonus-card">
+<div class="bonus-art company" role="img" aria-label="Capa visual do bônus Vendas para empresas e condomínios"><span class="bonus-art-head">NATAL DE ENCOMENDAS</span><span class="bonus-art-icon" aria-hidden="true">🏢</span><strong>PEDIDOS EM VOLUME</strong><span class="bonus-art-foot">EMPRESAS & CONDOMÍNIOS</span></div>
+<div class="content"><span class="bonus-no">BÔNUS 02</span><h3>Vendas para empresas e condomínios</h3><p>Estratégias para chegar a pedidos em maior quantidade.</p><span class="refval">Valor de referência <strong>R$ 97</strong></span></div></article>
+<article class="bonus-card">
+<div class="bonus-art package" role="img" aria-label="Capa visual do bônus Embalagens que valorizam seus doces"><span class="bonus-art-head">NATAL DE ENCOMENDAS</span><span class="bonus-art-icon" aria-hidden="true">🎀</span><strong>MAIS VALOR</strong><span class="bonus-art-foot">EMBALAGENS</span></div>
+<div class="content"><span class="bonus-no">BÔNUS 03</span><h3>Embalagens que valorizam seus doces</h3><p>Apresentação que aumenta o valor percebido do produto.</p><span class="refval">Valor de referência <strong>R$ 47</strong></span></div></article>
+<article class="bonus-card">
+<div class="bonus-art calendar" role="img" aria-label="Capa visual do bônus Operação Últimas Encomendas"><span class="bonus-art-head">NATAL DE ENCOMENDAS</span><span class="bonus-art-icon" aria-hidden="true">🗓️</span><strong>PLANO DE 7 DIAS</strong><span class="bonus-art-foot">ÚLTIMAS ENCOMENDAS</span></div>
+<div class="content"><span class="bonus-no">BÔNUS 04</span><h3>Operação Últimas Encomendas</h3><p>Organize os últimos sete dias antes do Natal.</p><span class="refval">Valor de referência <strong>R$ 67</strong></span></div></article>
 </div>
-<div class="extra"><div class="badge" aria-hidden="true">✦</div><div><h3>E ainda: Marketing nas Redes Sociais sem Complicação</h3><p>Um guia extra de divulgação com Instagram, Stories e WhatsApp.</p></div></div>
-<p class="bonus-foot">Conteúdos produzidos para a oferta. Confirme a disponibilização de todos os materiais na área de membros antes da campanha.</p>
+<div class="extra"><div class="badge" aria-hidden="true">✦</div><div><h3>E ainda: Marketing nas Redes Sociais sem Complicação</h3><p>Instagram, Stories e WhatsApp para colocar seu cardápio na frente de mais pessoas.</p><span class="refval">Valor de referência <strong>R$ 27</strong></span></div></div>
 </div></section>
-<section class="block bundle"><div class="wrap">
-<span class="eyebrow">Tudo pensado para caminhar junto</span><h2>Você não precisa descobrir cada etapa sozinha.</h2>
-<div class="pack"><div><b>6</b><span>módulos de treinamento</span></div><div><b>4</b><span>bônus especiais</span></div><div><b>+1</b><span>guia extra de marketing</span></div></div>
-<p class="lead">Ideias de kits, preços, divulgação e organização reunidos em uma única jornada. <b>O valor está em ter um caminho claro para executar.</b></p>
-</div></section>
-<section class="contrast"><div class="wrap"><p>O Natal vai chegar de qualquer jeito.<br><span style="color:#9f3648">A diferença é como você escolhe se preparar.</span></p></div></section>
+
 <section class="block offer-bg" id="oferta"><div class="wrap"><div class="offer-card">
-<span class="eyebrow">Sua campanha de Natal começa aqui</span>
-<h2>Prepare agora o Natal que você quer vender.</h2>
-<p class="offer-sub">Leve o Método 4P, os 6 módulos e os materiais extras em um único acesso digital.</p>
-<ul class="included"><li>6 módulos: do cardápio às entregas</li><li>4 bônus com aplicações comerciais práticas</li><li>Guia extra de marketing nas redes sociais</li><li>Material digital, sem mensalidade anunciada</li></ul>
-<div class="pricing-label">Oferta informada para esta página</div><div class="price">R$ 27</div>
-<p class="price-note">Preço a confirmar no checkout antes de finalizar o pagamento.</p>
-<a class="checkout-button" id="checkout-link" href="https://pay.mycheckoutt.com/01a1d60b-9e27-73f8-9f71-3f6ca6399772?ref=">SIM, QUERO PREPARAR MEU NATAL →</a>
-<div class="secure-line"><span>✓ Acesso pelo checkout informado</span><span>✓ Confira valor e condições antes de pagar</span></div>
-<p class="info-note">Compras e pagamentos são processados no site de checkout, fora desta página. Resultados comerciais não são garantidos. Os materiais devem estar disponíveis na entrega antes da veiculação de anúncios.</p>
+<span class="eyebrow">Agora é a sua vez</span>
+<h2>Seu próximo Natal pode começar com um cardápio pronto para faturar.</h2>
+<p class="offer-sub">O Método 4P reúne o caminho para escolher, precificar, divulgar e entregar suas encomendas.</p>
+<div class="value-stack"><span>6 módulos do Natal de Encomendas</span><strong>INCLUSOS</strong></div>
+<div class="value-stack"><span>4 bônus especiais + guia de marketing</span><strong>R$ 275*</strong></div>
+<p class="ref-explainer">*Soma dos valores de referência dos materiais extras.</p>
+<div class="pricing-label">Leve o treinamento e todos os extras por</div>
+<div class="price">R$ 27</div>
+<p class="price-note">Pagamento único • acesso digital</p>
+<a class="checkout-button" id="checkout-link" href="https://pay.mycheckoutt.com/01a1d60b-9e27-73f8-9f71-3f6ca6399772?ref=">QUERO COMEÇAR A FATURAR COM DOCES NO NATAL →</a>
+<div class="secure-line"><span>✓ 6 módulos</span><span>✓ 5 conteúdos extras</span><span>✓ Checkout online</span></div>
 </div></div></section>
 <section class="block faq"><div class="wrap"><div class="center"><span class="eyebrow">Respostas rápidas</span><h2>Ficou alguma dúvida?</h2></div>
 <div class="faq-list">
-<details><summary>Serve para quem está começando?</summary><p>Sim. Os módulos começam no planejamento do cardápio e passam por preço, divulgação e entrega.</p></details>
-<details><summary>Preciso ter muitos produtos ou seguidores?</summary><p>Não. O foco é criar um catálogo possível para sua capacidade e divulgá-lo com clareza. Quantidade de seguidores não garante pedidos.</p></details>
-<details><summary>O treinamento garante que vou ganhar dinheiro?</summary><p>Não. Ele oferece ferramentas para estruturar sua operação. Vendas e lucro dependem da demanda, do preço, da divulgação e da execução.</p></details>
-<details><summary>Os bônus fazem parte da oferta?</summary><p>Os quatro bônus especiais e o guia extra estão descritos nesta página. Verifique na área de membros se todos os arquivos foram disponibilizados antes de iniciar as vendas.</p></details>
+<details><summary>Funciona para quem está começando?</summary><p>Sim. Você começa pelo cardápio, passa pela precificação e aprende a divulgar e organizar as encomendas.</p></details>
+<details><summary>Preciso ter muitos seguidores?</summary><p>Não. A proposta é organizar uma oferta clara e usar seus canais de divulgação, inclusive WhatsApp, com estratégia.</p></details>
+<details><summary>O que recebo no acesso?</summary><p>Seis módulos do método, quatro bônus especiais e um guia extra de marketing, conforme descrito na oferta.</p></details>
 </div></div></section>
 </main>
-<footer><div class="wrap">Natal de Encomendas · Blackmamba Educação · Material digital • 2026</div></footer>
+<footer><div class="wrap"><strong>Natal de Encomendas</strong><span>Blackmamba Marketing e Promoção Ltda. • CNPJ 53.258.829/0001-55</span><small>Produto digital • 2026</small></div></footer>
 </body></html>
