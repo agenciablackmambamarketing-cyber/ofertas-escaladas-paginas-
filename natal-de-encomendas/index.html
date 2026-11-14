@@ -9,7 +9,7 @@
 <meta property="og:title" content="Natal de Encomendas | Aprenda a montar, precificar e vender seus doces de Natal">
 <meta property="og:description" content="Aprenda a montar um cardápio de Natal, calcular preços com margem e vender por encomenda usando Instagram e WhatsApp.">
 <meta property="og:type" content="website">
-<link rel="preload" as="image" href="hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="hero-maos.webp" fetchpriority="high">
 <style>
 :root{--wine:#321822;--wine2:#552735;--gold:#ffdc9e;--cream:#fffaf4;--paper:#f6eee5;--ink:#321f28;--muted:#695a5f;--line:#e9ded5;--accent:#ae4c55;--green:#2d6b52}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -22,9 +22,19 @@ img{display:block;width:100%;height:auto}a{color:inherit}h1,h2,h3,p{overflow-wra
 .hero h1{font-size:clamp(38px,4.6vw,64px);line-height:1.075;margin:0 0 19px;letter-spacing:-.055em;max-width:680px}
 .hero h1 em{color:#ffdda3;font-style:normal}
 .hero .sub{font-size:clamp(17px,1.65vw,21px);color:#fae9ea;line-height:1.55;max-width:590px;margin:0}
+.method-link{display:inline-block;margin-top:22px;background:#286c4c;color:#fff;font-weight:900;font-size:18px;border-radius:13px;padding:16px 22px;line-height:1.2;text-decoration:none;box-shadow:0 12px 21px #23624338}
+.method-link:hover{background:#1c5639}
+.method-link:focus-visible{outline:3px solid #cb8531;outline-offset:4px}
+.guide{background:var(--cream)}
+.guide-inner{display:grid;grid-template-columns:148px 1fr;gap:28px;align-items:center;max-width:920px}
+.guide-avatar{width:148px;height:148px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.guide h2{margin:0 0 12px}
+.guide .lead{margin:0;font-size:18px;color:var(--ink);line-height:1.5}
+.guide-note{margin:12px 0 0;font-size:13px;color:#8a7677}
+@media(max-width:740px){.guide-inner{grid-template-columns:1fr;justify-items:center;text-align:center;gap:16px}.guide-avatar{width:120px;height:120px}.method-link{margin-top:16px}}
 .micro{font-size:12px;opacity:.76}
 .hero-photo{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 28px 55px #14060988}
-.hero-photo img{width:100%;height:500px;object-fit:cover;object-position:52% 28%}
+.hero-photo img{width:100%;height:500px;object-fit:cover;object-position:50% 62%}
 .hero-photo .expert-ribbon{position:absolute;left:16px;right:16px;bottom:16px;background:#fffaf5ed;backdrop-filter:blur(5px);color:#432530;padding:13px 16px;border-radius:12px;display:flex;align-items:center;gap:12px;justify-content:space-between}
 .expert-ribbon strong{font-size:14px;line-height:1.18}.expert-ribbon small{font-size:11px;color:#705f62;line-height:1.3}
 .eyescroll{color:#f9d9ad;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:25px;font-weight:900}
@@ -104,7 +114,7 @@ footer{background:#27131c;color:#eadadd;padding:32px 0;font-size:12px;text-align
 @media(max-width:960px){.hero-inner{gap:24px;min-height:570px}.hero-photo img{height:450px}.bonus-card{grid-template-columns:36% 64%}.bonus-card h3{font-size:20px}.four-card img{height:130px}}
 @media(max-width:740px){.brandbar .wrap{height:54px}.brand-note{display:none}
 .hero-inner{display:flex;flex-direction:column;gap:18px;padding:16px 0 30px;min-height:0}
-.hero-photo{order:-1;width:100%;border-radius:13px}.hero-photo img{height:230px;object-position:50% 25%}
+.hero-photo{order:-1;width:100%;border-radius:13px}.hero-photo img{height:230px;object-position:50% 62%}
 .hero-photo .expert-ribbon{right:9px;left:9px;bottom:8px;padding:8px 10px}.expert-ribbon strong{font-size:12px}.expert-ribbon small{font-size:10px}
 .hero-copy{width:100%}.hero .eyebrow{font-size:10px;margin:4px 0 9px}.hero h1{font-size:clamp(29px,8vw,41px);line-height:1.06;margin-bottom:11px}.hero .sub{font-size:16px;line-height:1.43}
 .eyescroll{margin-top:17px;font-size:10px}
@@ -131,7 +141,7 @@ section.block{padding:58px 0}
  .hero-inner{padding:19px 0 25px;gap:15px}
  .hero h1{font-size:clamp(30px,8.3vw,41px);margin-bottom:9px}
  .hero .sub{font-size:15px;line-height:1.38}
- .hero-photo img{height:245px;object-position:50% 27%}
+ .hero-photo img{height:245px;object-position:50% 62%}
  /* Centralização da Hero apenas em telas de celular. */
  .hero-copy{width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
  .hero .eyebrow{display:block;width:100%;text-align:center;margin-left:auto;margin-right:auto}
@@ -203,34 +213,41 @@ fbq('track','PageView');
 <main>
 <section class="hero" aria-labelledby="hero-headline"><div class="wrap hero-inner">
 <div class="hero-copy">
-<span class="eyebrow gold">Faça do Natal a sua temporada de encomendas de doces</span>
-<h1 id="hero-headline">Aprenda a <em>montar, precificar e vender suas encomendas de doces</em> neste Natal.</h1>
-<p class="sub">Escolha o que vender, monte seu cardápio, calcule quanto cobrar e aprenda a divulgar suas encomendas pelo Instagram e WhatsApp. Um caminho prático para começar mesmo com pouca experiência.</p>
-<div class="eyescroll">Veja como colocar isso em prática ↓</div>
+<h1 id="hero-headline">Seu doce merece mais do que elogio. Merece pedido, preço certo e um Natal organizado.</h1>
+<p class="sub">Aqui é a Mariana, do Natal de Encomendas. Nesta página eu vou te mostrar, passo a passo, como organizar suas encomendas de Natal em 4 etapas: o que vender, quanto cobrar, como divulgar e como dar conta dos pedidos.</p>
+<a class="method-link" href="#metodo">Quero ver o método</a>
 </div>
 <div class="hero-photo">
-<img src="hero.webp" width="1500" height="1000" alt="Personagem de confeiteira sorrindo em cozinha decorada para o Natal" fetchpriority="high">
+<img src="hero-maos.webp" width="1152" height="864" alt="Mãos montando uma caixa de brigadeiros para encomenda de Natal" fetchpriority="high">
 <div class="expert-ribbon"><div><strong>Prepare seu Natal para vender</strong><br><small>Produtos, preços, divulgação e pedidos num só plano</small></div></div>
+</div>
+</div></section>
+<section class="block guide" aria-labelledby="guide-headline"><div class="wrap guide-inner">
+<img class="guide-avatar" src="avatar-mariana.webp" width="480" height="480" alt="Ilustração da Mariana, voz do Natal de Encomendas">
+<div>
+<h2 id="guide-headline">Quem vai te guiar</h2>
+<p class="lead">Eu sou a Mariana, a voz do Natal de Encomendas. Eu não vou te prometer faturamento. Vou te mostrar a conta, o cardápio e os 4 passos, e você decide o que fazer com eles.</p>
+<p class="guide-note">Mariana Valença é a voz do Natal de Encomendas.</p>
+</div>
+</div></section>
+<section class="block stage" id="metodo"><div class="wrap">
+<div class="center"><span class="eyebrow gold">Método 4P</span><h2>O Método 4P: da sua cozinha ao pedido confirmado</h2></div>
+<div class="four">
+<article class="four-card"><div class="mech-art art-menu" role="img" aria-label="Cardápio natalino com doces e kits"><div class="art-overline">PRODUTO</div><div class="art-icons">🍪 <span>🍫</span> 🎁</div><div class="art-pill">Presente e ceia</div></div><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Escolha poucos doces que fazem sentido para o Natal e monte duas linhas: presente e ceia. Cardápio claro, escolha fácil.</p></div></article>
+<article class="four-card"><div class="mech-art art-price" role="img" aria-label="Controle de custos e preço de venda"><div class="art-overline">PREÇO</div><div class="art-receipt"><span>Custo dos ingredientes</span><b>✓</b><span>Embalagem e produção</span><b>✓</b><strong>Preço de venda</strong><strong>R$</strong></div></div><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Anote o custo de cada ingrediente, some embalagem e produção e só então defina o preço. A conta vem antes do "sim".</p></div></article>
+<article class="four-card"><div class="mech-art art-promo" role="img" aria-label="Divulgação de Natal no celular"><div class="art-phone"><div class="art-phonebar">SEU NATAL 🎄</div><div class="art-photo">🎁🍫🍪</div><div class="art-msg">Cardápio disponível!</div><div class="art-chat">Quero encomendar! 💬</div></div></div><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Publicações e mensagens que mostram o cardápio e convidam a encomendar, no Instagram, nos Stories e no WhatsApp.</p></div></article>
+<article class="four-card"><div class="mech-art art-orders" role="img" aria-label="Lista de pedidos de Natal organizada"><div class="art-overline">PRODUÇÃO</div><div class="art-order">✓ Pedido confirmado</div><div class="art-order">✓ Pagamento anotado</div><div class="art-order">✓ Entrega programada</div></div><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Limite de pedidos, controle de pagamentos e entregas programadas. Você aceita o que cabe na sua cozinha.</p></div></article>
 </div>
 </div></section>
 <section class="block future"><div class="wrap">
 <div class="center"><span class="eyebrow">Imagine sua temporada de Natal</span><h2>O cliente pergunta o preço. Você responde sabendo quanto precisa cobrar.</h2><p class="headcopy">Seu cardápio pode circular pelo WhatsApp com fotos, opções e valores definidos. Quando alguém perguntar como encomendar, você terá um caminho para atender e fechar o pedido.</p></div>
 <div class="after-grid">
-<figure class="after-card after-image" style="margin:0"><img src="produtos.webp" alt="Doces natalinos apresentados em uma composição de produtos" loading="lazy" width="1500" height="844"><figcaption>01 • Cardápio pronto para apresentar</figcaption></figure>
+<figure class="after-card after-image" style="margin:0"><img src="produtos-doces.webp" alt="Doces natalinos com brigadeiros, panetone e caixas de presente sobre a mesa" loading="lazy" width="1280" height="720"><figcaption>01 • Cardápio pronto para apresentar</figcaption></figure>
 <div class="after-card after-content"><h3>Você abre o WhatsApp. E sabe o que responder.</h3><ul class="after-list"><li><span class="check">✓</span>Produtos e valores definidos</li><li><span class="check">✓</span>Mensagem pronta para enviar</li><li><span class="check">✓</span>Prazos e capacidade organizados</li></ul></div>
 </div>
 <div class="before-after">
 <div class="small-card old"><b>ANTES</b><strong>“Nem sei quanto cobrar...”</strong></div>
 <div class="small-card new"><b>COM SEU PLANO EM MÃOS</b><strong>“Aqui estão as opções, os preços e o prazo para encomendar.”</strong></div>
-</div>
-</div></section>
-<section class="block stage"><div class="wrap">
-<div class="center"><span class="eyebrow gold">Método 4P</span><h2>Da sua cozinha ao pedido confirmado: <span style="color:#ffdc9e">4 passos para vender no Natal.</span></h2></div>
-<div class="four">
-<article class="four-card"><div class="mech-art art-menu" role="img" aria-label="Imagem de um cardápio natalino com doces e kits"><div class="art-overline">SEU CARDÁPIO DE NATAL</div><div class="art-icons">🍪 <span>🍫</span> 🎁</div><div class="art-pill">Opções que dão vontade de pedir</div></div><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Monte opções para presentear e para servir na ceia.</p></div></article>
-<article class="four-card"><div class="mech-art art-price" role="img" aria-label="Imagem de um controle de custos e preço de venda"><div class="art-overline">PREÇO COM MARGEM</div><div class="art-receipt"><span>Custo dos ingredientes</span><b>✓</b><span>Embalagem e produção</span><b>✓</b><strong>Preço de venda</strong><strong>R$</strong></div></div><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Considere ingredientes, embalagens e produção antes de definir seu valor.</p></div></article>
-<article class="four-card"><div class="mech-art art-promo" role="img" aria-label="Imagem de uma divulgação de Natal no celular"><div class="art-phone"><div class="art-phonebar">SEU NATAL 🎄</div><div class="art-photo">🎁🍫🍪</div><div class="art-msg">Cardápio disponível!</div><div class="art-chat">Quero encomendar! 💬</div></div></div><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Apresente o cardápio com mensagens e publicações que convidam a encomendar.</p></div></article>
-<article class="four-card"><div class="mech-art art-orders" role="img" aria-label="Imagem de uma lista de pedidos de Natal organizada"><div class="art-overline">CONTROLE DE ENCOMENDAS</div><div class="art-order">✓ Pedido confirmado</div><div class="art-order">✓ Pagamento anotado</div><div class="art-order">✓ Entrega programada</div></div><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Controle pedidos, pagamentos e datas para entregar com organização.</p></div></article>
 </div>
 </div></section>
 <section class="block money-example" aria-labelledby="sim-headline"><div class="wrap">
@@ -248,7 +265,7 @@ fbq('track','PageView');
 </div></section>
 <section class="block result"><div class="wrap wish">
 <div><span class="eyebrow">Vender com mais controle</span><h2>Dezembro pode ser corrido. Faça cada encomenda <em style="font-style:normal;color:#a14b56">valer a pena.</em></h2><ul><li><span>✓</span>Monte um cardápio com opções claras para o cliente escolher.</li><li><span>✓</span>Calcule o valor de venda considerando os custos de cada doce.</li><li><span>✓</span>Organize os pedidos para saber o que produzir, cobrar e entregar.</li></ul></div>
-<div class="wish-image"><img src="pedidos.webp" alt="Materiais de organização de encomendas para confeitaria natalina" width="1500" height="844" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Saber quanto entrou, quanto custou e quanto cada pedido deixou.</h3></div></div>
+<div class="wish-image"><img src="pedidos-maos.webp" alt="Mãos anotando pedidos de encomenda ao lado de doces natalinos" width="1280" height="720" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Saber quanto entrou, quanto custou e quanto cada pedido deixou.</h3></div></div>
 </div></section>
 <section class="block kit"><div class="wrap">
 <div class="center"><span class="eyebrow">O que você aprende</span><h2>Seis módulos para preparar suas encomendas e começar a oferecer seus doces.</h2><p class="headcopy">Você vai da escolha do produto ao preço, divulgação, atendimento e entrega. Cada etapa prepara a seguinte.</p></div>
