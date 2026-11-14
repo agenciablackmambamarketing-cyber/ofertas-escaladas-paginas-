@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#321822">
 <title>Natal de Encomendas | Venda doces no Natal com preço e margem</title>
 <meta name="description" content="Monte um cardápio de doces para o Natal, aprenda quanto cobrar e como divulgar suas encomendas pelo WhatsApp. Curso digital com 6 módulos por R$ 27.">
-<meta property="og:title" content="Natal de Encomendas — transforme doces em uma oportunidade de faturamento">
+<meta property="og:title" content="Natal de Encomendas | Aprenda a montar, precificar e vender seus doces de Natal">
 <meta property="og:description" content="Aprenda a montar um cardápio de Natal, calcular preços com margem e vender por encomenda usando Instagram e WhatsApp.">
 <meta property="og:type" content="website">
 <link rel="preload" as="image" href="hero.webp" fetchpriority="high">
@@ -199,8 +199,8 @@ fbq('track','PageView');
 <main>
 <section class="hero" aria-labelledby="hero-headline"><div class="wrap hero-inner">
 <div class="hero-copy">
-<span class="eyebrow gold">Faça do Natal uma oportunidade de renda com seus doces</span>
-<h1 id="hero-headline">Aprenda a <em>ganhar dinheiro com encomendas de doces</em> neste Natal.</h1>
+<span class="eyebrow gold">Faça do Natal a sua temporada de encomendas de doces</span>
+<h1 id="hero-headline">Aprenda a <em>montar, precificar e vender suas encomendas de doces</em> neste Natal.</h1>
 <p class="sub">Escolha o que vender, monte seu cardápio, calcule quanto cobrar e aprenda a divulgar suas encomendas pelo Instagram e WhatsApp. Um caminho prático para começar mesmo com pouca experiência.</p>
 <div class="eyescroll">Veja como colocar isso em prática ↓</div>
 </div>
@@ -296,4 +296,97 @@ fbq('track','PageView');
 </div></div></section>
 </main>
 <footer><div class="wrap"><strong>Natal de Encomendas</strong><span>Blackmamba Marketing e Promoção Ltda. • CNPJ 53.258.829/0001-55</span><small>Produto digital • 2026</small></div></footer>
+<script>
+(function () {
+  var HOST = 'pay.mycheckoutt.com';
+  var STORE = 'natal-de-encomendas:checkout-params';
+  var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  /* ref= vazio permanece: não está na lista de repasse e a LP não define valor para ele.
+     value/currency: a oferta declara R$ 27 e o checkout do mesmo produto exibe R$ 27,00. */
+  var EVENT_PARAMS = { value: 27, currency: 'BRL' };
+
+  function pick(source) {
+    var out = {};
+    if (!source) return out;
+    for (var i = 0; i < KEYS.length; i++) {
+      var key = KEYS[i];
+      var value = source[key];
+      if (typeof value === 'string' && value) out[key] = value;
+    }
+    return out;
+  }
+
+  function fromSearch(search) {
+    var raw = {};
+    try {
+      var params = new URLSearchParams(search || '');
+      for (var i = 0; i < KEYS.length; i++) {
+        var value = params.get(KEYS[i]);
+        if (value) raw[KEYS[i]] = value;
+      }
+    } catch (e) {}
+    return raw;
+  }
+
+  function readStore() {
+    try {
+      return pick(JSON.parse(sessionStorage.getItem(STORE) || '{}'));
+    } catch (e) {
+      return {};
+    }
+  }
+
+  var current = fromSearch(window.location.search);
+  var merged = Object.keys(current).length ? current : readStore();
+  try {
+    if (Object.keys(merged).length) sessionStorage.setItem(STORE, JSON.stringify(pick(merged)));
+  } catch (e) {}
+
+  function isCheckoutHref(href) {
+    try {
+      return new URL(href, window.location.href).hostname === HOST;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  if (Object.keys(merged).length) {
+    var links = document.getElementsByTagName('a');
+    for (var n = 0; n < links.length; n++) {
+      var href = links[n].getAttribute('href') || '';
+      if (!isCheckoutHref(href)) continue;
+      try {
+        var url = new URL(href, window.location.href);
+        var changed = false;
+        for (var p = 0; p < KEYS.length; p++) {
+          var name = KEYS[p];
+          if (!merged[name] || url.searchParams.has(name)) continue;
+          url.searchParams.set(name, merged[name]);
+          changed = true;
+        }
+        if (changed) links[n].setAttribute('href', url.toString());
+      } catch (e) {}
+    }
+  }
+
+  var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  document.addEventListener('click', function (ev) {
+    try {
+      var node = ev.target;
+      if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
+      var anchor = node && node.closest ? node.closest('a') : null;
+      if (!anchor) {
+        while (node && node.nodeType === 1 && node.tagName !== 'A') node = node.parentNode;
+        if (node && node.tagName === 'A') anchor = node;
+      }
+      if (!anchor || !isCheckoutHref(anchor.getAttribute('href') || '')) return;
+      if (seen) {
+        if (seen.has(ev)) return;
+        seen.add(ev);
+      }
+      if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
+    } catch (e) {}
+  }, true);
+})();
+</script>
 </body></html>
