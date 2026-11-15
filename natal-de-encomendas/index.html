@@ -203,11 +203,26 @@ footer small{color:#c8b6ba;font-size:11px}
 @media(max-width:740px){.mech-art{height:145px}.bonus-art{min-height:200px}.bonus-art-icon{font-size:49px}.bonus-art strong{font-size:14px}}
 
 </style>
+<script>
+(function () {
+  try {
+    var params = new URLSearchParams(location.search);
+    var utm = (params.get('utm_source') || '').toLowerCase();
+    var fbclid = params.get('fbclid') || '';
+    if (params.get('bm_test') === '1' || utm === 'teste' || utm === 'diag' || /^(DIAG|PROD|TESTE)/.test(fbclid)) {
+      sessionStorage.setItem('natal:test', '1');
+    }
+    if (sessionStorage.getItem('natal:test') === '1') window.__natalTest = true;
+  } catch (e) {}
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
+if (!window.__natalTest) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1128907580042803');
 fbq('track','PageView');
+}
 </script>
 <!-- End Meta Pixel Code -->
 </head>
@@ -331,6 +346,19 @@ fbq('track','PageView');
   /* ref= vazio permanece: não está na lista de repasse e a LP não define valor para ele.
      value/currency: a oferta declara R$ 27 e o checkout do mesmo produto exibe R$ 27,00. */
   var EVENT_PARAMS = { value: 27, currency: 'BRL' };
+  var FORCE_COUNTRY_BR = true;
+
+  function rawParam(search, key) {
+    var q = search || '';
+    if (q.charAt(0) === '?') q = q.slice(1);
+    if (!q) return '';
+    var parts = q.split('&');
+    var prefix = key + '=';
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].indexOf(prefix) === 0) return parts[i].slice(prefix.length);
+    }
+    return '';
+  }
 
   function pick(source) {
     var out = {};
@@ -345,13 +373,10 @@ fbq('track','PageView');
 
   function fromSearch(search) {
     var raw = {};
-    try {
-      var params = new URLSearchParams(search || '');
-      for (var i = 0; i < KEYS.length; i++) {
-        var value = params.get(KEYS[i]);
-        if (value) raw[KEYS[i]] = value;
-      }
-    } catch (e) {}
+    for (var i = 0; i < KEYS.length; i++) {
+      var value = rawParam(search, KEYS[i]);
+      if (value) raw[KEYS[i]] = value;
+    }
     return raw;
   }
 
@@ -377,32 +402,83 @@ fbq('track','PageView');
     }
   }
 
-  if (Object.keys(merged).length) {
+  function hasParam(href, key) {
+    return new RegExp('(?:^|[?&])' + key + '=').test(String(href).split('#')[0]);
+  }
+
+  function appendRawParam(href, key, rawValue) {
+    if (!rawValue || hasParam(href, key)) return href;
+    var hash = '';
+    var base = href;
+    var hi = href.indexOf('#');
+    if (hi >= 0) {
+      hash = href.slice(hi);
+      base = href.slice(0, hi);
+    }
+    return base + (base.indexOf('?') >= 0 ? '&' : '?') + key + '=' + rawValue + hash;
+  }
+
+  if (Object.keys(merged).length || FORCE_COUNTRY_BR) {
     var links = document.getElementsByTagName('a');
     for (var n = 0; n < links.length; n++) {
       var href = links[n].getAttribute('href') || '';
       if (!isCheckoutHref(href)) continue;
-      try {
-        var url = new URL(href, window.location.href);
-        var changed = false;
-        for (var p = 0; p < KEYS.length; p++) {
-          var name = KEYS[p];
-          if (!merged[name] || url.searchParams.has(name)) continue;
-          url.searchParams.set(name, merged[name]);
-          changed = true;
-        }
-        if (changed) links[n].setAttribute('href', url.toString());
-      } catch (e) {}
+      var next = href;
+      for (var p = 0; p < KEYS.length; p++) {
+        next = appendRawParam(next, KEYS[p], merged[KEYS[p]]);
+      }
+      if (FORCE_COUNTRY_BR) next = appendRawParam(next, 'country', 'BR');
+      if (next !== href) links[n].setAttribute('href', next);
     }
   }
 
   var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  var PIXEL_ID = '1128907580042803';
   function pixelReady() {
     try {
       return !!(window.fbq && window.fbq.loaded && typeof window.fbq.callMethod === 'function');
     } catch (err) {
       return false;
     }
+  }
+  function isNatalTest() {
+    try {
+      return window.__natalTest === true || sessionStorage.getItem('natal:test') === '1';
+    } catch (err) {
+      return false;
+    }
+  }
+  function cookieValue(name) {
+    var parts = document.cookie ? document.cookie.split('; ') : [];
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].indexOf(name + '=') === 0) {
+        try { return decodeURIComponent(parts[i].slice(name.length + 1)); } catch (err) { return parts[i].slice(name.length + 1); }
+      }
+    }
+    return '';
+  }
+  function newEventId() {
+    return 'ic-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+  function sendClickImage(eventId) {
+    var parts = [
+      'id=' + PIXEL_ID,
+      'ev=InitiateCheckout',
+      'eid=' + encodeURIComponent(eventId),
+      'cd[value]=27',
+      'cd[currency]=BRL',
+      'dl=' + encodeURIComponent(location.href),
+      'noscript=1'
+    ];
+    if (!cookieValue('_fbc')) {
+      var fbclid = rawParam(location.search, 'fbclid');
+      if (fbclid) parts.push('fbc=' + encodeURIComponent('fb.1.' + Date.now() + '.' + fbclid));
+    }
+    var img = new Image();
+    img.src = 'https://www.facebook.com/tr?' + parts.join('&');
+  }
+  function trackWithPixel(eventId) {
+    window.fbq('track', 'InitiateCheckout', EVENT_PARAMS, { eventID: eventId });
   }
   function leavesInThisTab(ev, anchor) {
     if (!ev || ev.button) return false;
@@ -415,6 +491,8 @@ fbq('track','PageView');
   document.addEventListener('click', function (ev) {
     var dest = '';
     var hold = false;
+    var eventId = '';
+    var delivered = false;
     try {
       var node = ev.target;
       if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
@@ -428,15 +506,24 @@ fbq('track','PageView');
         if (seen.has(ev)) return;
         seen.add(ev);
       }
-      try {
-        if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
-      } catch (err) {}
-      if (pixelReady() || !leavesInThisTab(ev, anchor)) return;
+      eventId = newEventId();
+      if (isNatalTest()) return;
+      if (pixelReady()) {
+        try { trackWithPixel(eventId); } catch (err) {}
+        return;
+      }
+      if (!leavesInThisTab(ev, anchor)) {
+        try {
+          if (typeof window.fbq === 'function') trackWithPixel(eventId);
+          else sendClickImage(eventId);
+        } catch (err) {}
+        return;
+      }
       dest = anchor.href;
       hold = true;
       ev.preventDefault();
     } catch (e) {}
-    if (!hold || !dest) return;
+    if (!hold || !dest || !eventId) return;
     var started = Date.now();
     var left = false;
     function go() {
@@ -444,15 +531,25 @@ fbq('track','PageView');
       left = true;
       try { window.location.href = dest; } catch (err) {}
     }
+    function deliver(mode) {
+      if (delivered) return;
+      delivered = true;
+      try {
+        if (mode === 'fbq') trackWithPixel(eventId);
+        else sendClickImage(eventId);
+      } catch (err) {}
+    }
     (function waitPixel() {
       if (left) return;
       try {
         if (pixelReady()) {
-          setTimeout(go, 150);
+          deliver('fbq');
+          go();
           return;
         }
       } catch (err) {}
       if (Date.now() - started >= 800) {
+        deliver('image');
         go();
         return;
       }
