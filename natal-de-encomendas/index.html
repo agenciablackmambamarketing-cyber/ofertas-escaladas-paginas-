@@ -459,26 +459,12 @@ fbq('track','PageView');
     } catch (err) {}
     return 'ic_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
   }
-  function sendCapi(eventId, testMode) {
-    try {
-      if (!navigator.sendBeacon) return;
-      var body = JSON.stringify({
-        event_id: eventId,
-        event_source_url: location.href,
-        fbp: cookieValue('_fbp'),
-        fbc: fbcValue(),
-        user_agent: navigator.userAgent,
-        test: !!testMode
-      });
-      navigator.sendBeacon('/api/capi-ic', new Blob([body], { type: 'application/json' }));
-    } catch (err) {}
-  }
-  function sendIcImage(eventId) {
+  function sendClickImage(eventId) {
     var fbp = cookieValue('_fbp');
     var fbc = fbcValue();
     var parts = [
       'id=' + PIXEL_ID,
-      'ev=InitiateCheckout',
+      'ev=CliqueCheckout',
       'eid=' + encodeURIComponent(eventId),
       'cd[value]=27',
       'cd[currency]=BRL',
@@ -492,7 +478,7 @@ fbq('track','PageView');
     img.src = 'https://www.facebook.com/tr?' + parts.join('&');
   }
   function trackWithPixel(eventId) {
-    window.fbq('track', 'InitiateCheckout', EVENT_PARAMS, { eventID: eventId });
+    window.fbq('trackCustom', 'CliqueCheckout', EVENT_PARAMS, { eventID: eventId });
   }
   function leavesInThisTab(ev, anchor) {
     if (!ev || ev.button) return false;
@@ -521,21 +507,16 @@ fbq('track','PageView');
         seen.add(ev);
       }
       eventId = newEventId();
-      if (isNatalTest()) {
-        sendCapi(eventId, true);
-        return;
-      }
+      if (isNatalTest()) return;
       if (pixelReady()) {
         try { trackWithPixel(eventId); } catch (err) {}
-        sendCapi(eventId, false);
         return;
       }
       if (!leavesInThisTab(ev, anchor)) {
         try {
           if (typeof window.fbq === 'function') trackWithPixel(eventId);
-          else sendIcImage(eventId);
+          else sendClickImage(eventId);
         } catch (err) {}
-        sendCapi(eventId, false);
         return;
       }
       dest = anchor.href;
@@ -555,9 +536,8 @@ fbq('track','PageView');
       delivered = true;
       try {
         if (mode === 'fbq') trackWithPixel(eventId);
-        else sendIcImage(eventId);
+        else sendClickImage(eventId);
       } catch (err) {}
-      sendCapi(eventId, false);
     }
     (function waitPixel() {
       if (left) return;
