@@ -397,7 +397,24 @@ fbq('track','PageView');
   }
 
   var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  function pixelReady() {
+    try {
+      return !!(window.fbq && window.fbq.loaded && typeof window.fbq.callMethod === 'function');
+    } catch (err) {
+      return false;
+    }
+  }
+  function leavesInThisTab(ev, anchor) {
+    if (!ev || ev.button) return false;
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return false;
+    if (!ev.cancelable) return false;
+    var target = anchor && anchor.getAttribute ? (anchor.getAttribute('target') || '') : '';
+    if (String(target).toLowerCase() === '_blank') return false;
+    return true;
+  }
   document.addEventListener('click', function (ev) {
+    var dest = '';
+    var hold = false;
     try {
       var node = ev.target;
       if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
@@ -411,8 +428,36 @@ fbq('track','PageView');
         if (seen.has(ev)) return;
         seen.add(ev);
       }
-      if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
+      try {
+        if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
+      } catch (err) {}
+      if (pixelReady() || !leavesInThisTab(ev, anchor)) return;
+      dest = anchor.href;
+      hold = true;
+      ev.preventDefault();
     } catch (e) {}
+    if (!hold || !dest) return;
+    var started = Date.now();
+    var left = false;
+    function go() {
+      if (left) return;
+      left = true;
+      try { window.location.href = dest; } catch (err) {}
+    }
+    (function waitPixel() {
+      if (left) return;
+      try {
+        if (pixelReady()) {
+          setTimeout(go, 150);
+          return;
+        }
+      } catch (err) {}
+      if (Date.now() - started >= 800) {
+        go();
+        return;
+      }
+      setTimeout(waitPixel, 40);
+    })();
   }, true);
 })();
 </script>
