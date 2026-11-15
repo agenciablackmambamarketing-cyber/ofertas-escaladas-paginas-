@@ -2,14 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#321822">
 <title>Natal de Encomendas | Venda doces no Natal com preço e margem</title>
 <meta name="description" content="Monte um cardápio de doces para o Natal, aprenda quanto cobrar e como divulgar suas encomendas pelo WhatsApp. Curso digital com 6 módulos por R$ 27.">
 <meta property="og:title" content="Natal de Encomendas | Aprenda a montar, precificar e vender seus doces de Natal">
 <meta property="og:description" content="Aprenda a montar um cardápio de Natal, calcular preços com margem e vender por encomenda usando Instagram e WhatsApp.">
 <meta property="og:type" content="website">
-<link rel="preload" as="image" href="hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="hero-maos.webp" fetchpriority="high">
 <style>
 :root{--wine:#321822;--wine2:#552735;--gold:#ffdc9e;--cream:#fffaf4;--paper:#f6eee5;--ink:#321f28;--muted:#695a5f;--line:#e9ded5;--accent:#ae4c55;--green:#2d6b52}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -22,9 +22,30 @@ img{display:block;width:100%;height:auto}a{color:inherit}h1,h2,h3,p{overflow-wra
 .hero h1{font-size:clamp(38px,4.6vw,64px);line-height:1.075;margin:0 0 19px;letter-spacing:-.055em;max-width:680px}
 .hero h1 em{color:#ffdda3;font-style:normal}
 .hero .sub{font-size:clamp(17px,1.65vw,21px);color:#fae9ea;line-height:1.55;max-width:590px;margin:0}
+.method-link{display:inline-block;margin-top:22px;background:#286c4c;color:#fff;font-weight:900;font-size:18px;border-radius:13px;padding:16px 22px;line-height:1.2;text-decoration:none;box-shadow:0 12px 21px #23624338}
+.method-link:hover{background:#1c5639}
+.method-link:focus-visible{outline:3px solid #cb8531;outline-offset:4px}
+.hero-points{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:6px;max-width:560px;color:#fae9ea;font-size:15px;font-weight:700;line-height:1.35}
+.hero-points li{padding-left:16px;position:relative}.hero-points li:before{content:"•";position:absolute;left:0;color:var(--gold)}
+.hero-micro{margin:10px 0 0;max-width:560px;color:#fae9ea;font-size:13px;line-height:1.4}
+.pain{background:#f6eee5}.pain-copy{max-width:760px;margin:0 auto;font-size:clamp(18px,2.1vw,22px);line-height:1.55;font-weight:700}
+.buy-bar{display:none}
+@media(max-width:740px){
+.buy-bar.is-visible{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;justify-content:space-between;gap:10px;background:#2a121b;color:#fff;padding:10px 14px calc(12px + env(safe-area-inset-bottom, 0px));box-shadow:0 -8px 24px #14060955}
+body.has-buy-bar{padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
+.buy-bar-note{margin:0;font-size:13px;font-weight:800;line-height:1.25}
+.buy-bar-btn{flex:0 0 auto;min-height:44px;display:inline-flex;align-items:center;justify-content:center;background:#286c4c;color:#fff;font-weight:900;font-size:15px;text-decoration:none;border-radius:11px;padding:10px 14px}
+}
+.guide{background:var(--cream)}
+.guide-inner{display:grid;grid-template-columns:148px 1fr;gap:28px;align-items:center;max-width:920px}
+.guide-avatar{width:148px;height:148px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.guide h2{margin:0 0 12px}
+.guide .lead{margin:0;font-size:18px;color:var(--ink);line-height:1.5}
+.guide-note{margin:12px 0 0;font-size:13px;color:#8a7677}
+@media(max-width:740px){.guide-inner{grid-template-columns:1fr;justify-items:center;text-align:center;gap:16px}.guide-avatar{width:120px;height:120px}}
 .micro{font-size:12px;opacity:.76}
 .hero-photo{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 28px 55px #14060988}
-.hero-photo img{width:100%;height:500px;object-fit:cover;object-position:52% 28%}
+.hero-photo img{width:100%;height:500px;object-fit:cover;object-position:50% 62%}
 .hero-photo .expert-ribbon{position:absolute;left:16px;right:16px;bottom:16px;background:#fffaf5ed;backdrop-filter:blur(5px);color:#432530;padding:13px 16px;border-radius:12px;display:flex;align-items:center;gap:12px;justify-content:space-between}
 .expert-ribbon strong{font-size:14px;line-height:1.18}.expert-ribbon small{font-size:11px;color:#705f62;line-height:1.3}
 .eyescroll{color:#f9d9ad;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:25px;font-weight:900}
@@ -103,10 +124,11 @@ section.block{padding:76px 0}.center{text-align:center}.center .eyebrow{margin-b
 footer{background:#27131c;color:#eadadd;padding:32px 0;font-size:12px;text-align:center}
 @media(max-width:960px){.hero-inner{gap:24px;min-height:570px}.hero-photo img{height:450px}.bonus-card{grid-template-columns:36% 64%}.bonus-card h3{font-size:20px}.four-card img{height:130px}}
 @media(max-width:740px){.brandbar .wrap{height:54px}.brand-note{display:none}
-.hero-inner{display:flex;flex-direction:column;gap:18px;padding:16px 0 30px;min-height:0}
-.hero-photo{order:-1;width:100%;border-radius:13px}.hero-photo img{height:230px;object-position:50% 25%}
+.hero-inner{display:flex;flex-direction:column;gap:12px;padding:8px 0 12px;min-height:0}
+.hero-copy{order:0;width:100%}
+.hero-photo{order:1;width:100%;border-radius:13px}.hero-photo img{height:160px;object-position:50% 62%}
 .hero-photo .expert-ribbon{right:9px;left:9px;bottom:8px;padding:8px 10px}.expert-ribbon strong{font-size:12px}.expert-ribbon small{font-size:10px}
-.hero-copy{width:100%}.hero .eyebrow{font-size:10px;margin:4px 0 9px}.hero h1{font-size:clamp(29px,8vw,41px);line-height:1.06;margin-bottom:11px}.hero .sub{font-size:16px;line-height:1.43}
+.hero .eyebrow{font-size:10px;margin:4px 0 9px}.hero h1{font-size:22px;line-height:1.08;margin:0 0 6px}.hero .sub{font-size:13px;line-height:1.28}
 .eyescroll{margin-top:17px;font-size:10px}
 section.block{padding:58px 0}
 .after-grid,.wish,.bonus-grid{grid-template-columns:1fr}
@@ -117,27 +139,29 @@ section.block{padding:58px 0}
 .offer-card{padding:34px 22px}.price{font-size:74px}
 }
 @media(max-width:430px){.wrap{padding:0 18px}.logo{font-size:18px}
-.hero-photo img{height:203px}.hero h1{font-size:32px}.hero .sub{font-size:15px}
+.hero-photo img{height:150px}.hero h1{font-size:22px}.hero .sub{font-size:13px}
 .after-list li{font-size:14px}.four-card img{height:118px}.four-card h3{font-size:19px}.four-card .inner{padding:13px}.four-card p{font-size:13px}.kit-grid{gap:10px}.kit-piece{padding:17px;min-height:110px}.kit-piece h3{font-size:16px}
 .bonus-card .content{padding:14px}.bonus-card h3{font-size:18px}.bonus-card p{font-size:13px}.bonus-card img{min-height:205px}
 .extra .badge{width:48px;height:48px;flex-basis:48px;font-size:23px}.extra h3{font-size:17px}.extra p{font-size:13px}
 .pack b{font-size:35px}.pack span{font-size:12px}.offer-card{padding:30px 18px}.checkout-button{font-size:18px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.checkout-button{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.checkout-button,.buy-bar{transition:none}}
 .visual-examples{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:24px}.visual-examples figure{margin:0;background:#fff;border:1px solid #eadfd6;border-radius:15px;overflow:hidden}.visual-examples img{width:100%;display:block;aspect-ratio:3/2;object-fit:contain}.visual-examples figcaption{padding:13px 17px;font-size:13px;color:#69575d;font-weight:700}@media(max-width:740px){.visual-examples{grid-template-columns:1fr}} 
 /* v3: sequência visual com headline acima da expert e venda orientada a faturamento */
 @media(max-width:740px){
- .hero-photo{order:0}
- .hero-inner{padding:19px 0 25px;gap:15px}
- .hero h1{font-size:clamp(30px,8.3vw,41px);margin-bottom:9px}
- .hero .sub{font-size:15px;line-height:1.38}
- .hero-photo img{height:245px;object-position:50% 27%}
- /* Centralização da Hero apenas em telas de celular. */
+ .hero-copy{order:0}
+ .hero-photo{order:1}
+ .hero-inner{min-height:0;padding:8px 0 10px;gap:10px}
+ .hero h1{font-size:22px;line-height:1.08;margin:0 0 6px}
+ .hero .sub{font-size:13px;line-height:1.28}
+ .hero-photo img{height:150px;object-position:50% 62%}
  .hero-copy{width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
  .hero .eyebrow{display:block;width:100%;text-align:center;margin-left:auto;margin-right:auto}
  .hero h1{width:100%;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance}
- .hero .sub{width:100%;max-width:560px;margin-left:auto;margin-right:auto;text-align:center}
- .eyescroll{margin:12px auto 0;text-align:center;width:100%}
+ .hero .sub{width:100%;max-width:340px;margin-left:auto;margin-right:auto;text-align:center}
+ .hero-points{max-width:340px;margin:8px auto 0;font-size:12.5px;gap:3px;text-align:left}
+ .method-link{margin-top:8px;width:100%;max-width:340px;min-height:44px;padding:11px 12px;font-size:15px;text-align:center}
+ .hero-micro{margin:6px auto 0;max-width:340px;font-size:12px;line-height:1.3}
  .hero-photo{margin-left:auto;margin-right:auto}
  .hero-photo .expert-ribbon{justify-content:center;text-align:center}
  .bonus-card{grid-template-columns:39% 61%}
@@ -165,16 +189,6 @@ section.block{padding:58px 0}
 .bonus-art.company{background:linear-gradient(145deg,#bfe4de,#edfbfa)}
 .bonus-art.package{background:linear-gradient(145deg,#e8c4d6,#fff2f5)}
 .bonus-art.calendar{background:linear-gradient(145deg,#dcc6f4,#f2eafb)}
-.money-example{background:#fff8ed}
-.money-example .sim-box{max-width:980px;margin:26px auto 0;background:#fff;border:1px solid #e9d3b7;border-radius:17px;padding:29px;box-shadow:0 14px 34px #4b23320b}
-.sim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.sim-stat{background:#f8efe6;border-radius:12px;padding:17px 13px;text-align:center}
-.sim-stat b{display:block;font-size:clamp(26px,3.5vw,39px);line-height:1.1;color:#873348}
-.sim-stat span{display:block;font-size:13px;color:#5f4b50;margin-top:7px;font-weight:800}
-.sim-formula{text-align:center;font-size:16px;color:#4d3941;margin:17px auto 0;max-width:780px;line-height:1.55}
-.sim-disclaimer{text-align:center;font-size:12px;color:#75656a;margin:12px auto 0;max-width:810px;line-height:1.5}
-.sim-cta{display:table;margin:21px auto 0;background:#286c4c;color:#fff;text-decoration:none;border-radius:11px;padding:16px 23px;font-size:16px;font-weight:900;text-align:center}
-@media(max-width:740px){.sim-grid{grid-template-columns:1fr;gap:9px}.sim-stat{padding:13px}.sim-stat b{font-size:31px}.money-example .sim-box{padding:20px 15px}.sim-cta{width:100%}}
 .refval{display:block;margin-top:12px;font-size:12px;color:#876273;font-weight:700}
 .refval strong{font-size:17px;color:#9e3d51;margin-left:5px;white-space:nowrap}
 .extra .refval{color:#ebcfd3}.extra .refval strong{color:#ffdc9e}
@@ -203,20 +217,28 @@ fbq('track','PageView');
 <main>
 <section class="hero" aria-labelledby="hero-headline"><div class="wrap hero-inner">
 <div class="hero-copy">
-<span class="eyebrow gold">Faça do Natal a sua temporada de encomendas de doces</span>
-<h1 id="hero-headline">Aprenda a <em>montar, precificar e vender suas encomendas de doces</em> neste Natal.</h1>
-<p class="sub">Escolha o que vender, monte seu cardápio, calcule quanto cobrar e aprenda a divulgar suas encomendas pelo Instagram e WhatsApp. Um caminho prático para começar mesmo com pouca experiência.</p>
-<div class="eyescroll">Veja como colocar isso em prática ↓</div>
+<h1 id="hero-headline">Seu doce merece mais do que elogio. Merece pedido, preço certo e um Natal organizado.</h1>
+<p class="sub">Aqui é a Mariana, do Natal de Encomendas. Nesta página eu vou te mostrar, passo a passo, como organizar suas encomendas de Natal em 4 etapas: o que vender, quanto cobrar, como divulgar e como dar conta dos pedidos.</p>
+<ul class="hero-points">
+<li>Cardápio claro, com linha de presente e linha de ceia.</li>
+<li>A conta do preço vem antes do “sim”.</li>
+<li>Divulgação com convite para encomendar e pedidos no limite da sua cozinha.</li>
+</ul>
+<a class="method-link" id="hero-checkout" href="https://pay.mycheckoutt.com/01a1d60b-9e27-73f8-9f71-3f6ca6399772?ref=">Quero o Natal de Encomendas por R$ 27</a>
+<p class="hero-micro">R$ 27 · acesso vitalício, sem mensalidade<br>Garantia de 7 dias. Se não fizer sentido para você, peça o reembolso em até 7 dias.</p>
 </div>
 <div class="hero-photo">
-<img src="hero.webp" width="1500" height="1000" alt="Personagem de confeiteira sorrindo em cozinha decorada para o Natal" fetchpriority="high">
+<img src="hero-maos.webp" width="1152" height="864" alt="Mãos montando uma caixa de brigadeiros para encomenda de Natal" fetchpriority="high">
 <div class="expert-ribbon"><div><strong>Prepare seu Natal para vender</strong><br><small>Produtos, preços, divulgação e pedidos num só plano</small></div></div>
 </div>
+</div></section>
+<section class="block pain"><div class="wrap">
+<p class="pain-copy">Talvez você conheça esta cena: você posta a foto do panetone e só recebe coração. Alguém pergunta “quanto é?” e você chuta. A cliente aceita rápido demais e você fica pensando se cobrou pouco. Em dezembro os pedidos chegam por áudio, print e papelzinho, e no dia 24 você não sabe quem já pagou. Não é falta de talento. É falta de plano.</p>
 </div></section>
 <section class="block future"><div class="wrap">
 <div class="center"><span class="eyebrow">Imagine sua temporada de Natal</span><h2>O cliente pergunta o preço. Você responde sabendo quanto precisa cobrar.</h2><p class="headcopy">Seu cardápio pode circular pelo WhatsApp com fotos, opções e valores definidos. Quando alguém perguntar como encomendar, você terá um caminho para atender e fechar o pedido.</p></div>
 <div class="after-grid">
-<figure class="after-card after-image" style="margin:0"><img src="produtos.webp" alt="Doces natalinos apresentados em uma composição de produtos" loading="lazy" width="1500" height="844"><figcaption>01 • Cardápio pronto para apresentar</figcaption></figure>
+<figure class="after-card after-image" style="margin:0"><img src="produtos-doces.webp" alt="Doces natalinos com brigadeiros, panetone e caixas de presente sobre a mesa" loading="lazy" width="1280" height="720"><figcaption>01 • Cardápio pronto para apresentar</figcaption></figure>
 <div class="after-card after-content"><h3>Você abre o WhatsApp. E sabe o que responder.</h3><ul class="after-list"><li><span class="check">✓</span>Produtos e valores definidos</li><li><span class="check">✓</span>Mensagem pronta para enviar</li><li><span class="check">✓</span>Prazos e capacidade organizados</li></ul></div>
 </div>
 <div class="before-after">
@@ -224,31 +246,26 @@ fbq('track','PageView');
 <div class="small-card new"><b>COM SEU PLANO EM MÃOS</b><strong>“Aqui estão as opções, os preços e o prazo para encomendar.”</strong></div>
 </div>
 </div></section>
-<section class="block stage"><div class="wrap">
-<div class="center"><span class="eyebrow gold">Método 4P</span><h2>Da sua cozinha ao pedido confirmado: <span style="color:#ffdc9e">4 passos para vender no Natal.</span></h2></div>
-<div class="four">
-<article class="four-card"><div class="mech-art art-menu" role="img" aria-label="Imagem de um cardápio natalino com doces e kits"><div class="art-overline">SEU CARDÁPIO DE NATAL</div><div class="art-icons">🍪 <span>🍫</span> 🎁</div><div class="art-pill">Opções que dão vontade de pedir</div></div><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Monte opções para presentear e para servir na ceia.</p></div></article>
-<article class="four-card"><div class="mech-art art-price" role="img" aria-label="Imagem de um controle de custos e preço de venda"><div class="art-overline">PREÇO COM MARGEM</div><div class="art-receipt"><span>Custo dos ingredientes</span><b>✓</b><span>Embalagem e produção</span><b>✓</b><strong>Preço de venda</strong><strong>R$</strong></div></div><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Considere ingredientes, embalagens e produção antes de definir seu valor.</p></div></article>
-<article class="four-card"><div class="mech-art art-promo" role="img" aria-label="Imagem de uma divulgação de Natal no celular"><div class="art-phone"><div class="art-phonebar">SEU NATAL 🎄</div><div class="art-photo">🎁🍫🍪</div><div class="art-msg">Cardápio disponível!</div><div class="art-chat">Quero encomendar! 💬</div></div></div><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Apresente o cardápio com mensagens e publicações que convidam a encomendar.</p></div></article>
-<article class="four-card"><div class="mech-art art-orders" role="img" aria-label="Imagem de uma lista de pedidos de Natal organizada"><div class="art-overline">CONTROLE DE ENCOMENDAS</div><div class="art-order">✓ Pedido confirmado</div><div class="art-order">✓ Pagamento anotado</div><div class="art-order">✓ Entrega programada</div></div><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Controle pedidos, pagamentos e datas para entregar com organização.</p></div></article>
+<section class="block guide" aria-labelledby="guide-headline"><div class="wrap guide-inner">
+<img class="guide-avatar" src="avatar-mariana.webp" width="480" height="480" alt="Ilustração da Mariana, voz do Natal de Encomendas">
+<div>
+<h2 id="guide-headline">Quem vai te guiar</h2>
+<p class="lead">Eu sou a Mariana, a voz do Natal de Encomendas. Eu não vou te prometer faturamento. Vou te mostrar a conta, o cardápio e os 4 passos, e você decide o que fazer com eles.</p>
+<p class="guide-note">Mariana Valença é a voz do Natal de Encomendas.</p>
 </div>
 </div></section>
-<section class="block money-example" aria-labelledby="sim-headline"><div class="wrap">
-<div class="center"><span class="eyebrow">Veja por que o preço de venda importa</span><h2 id="sim-headline">Um pedido de R$ 85 pode deixar R$ 35 após os custos variáveis. <span style="color:#963f4c">Entenda a conta.</span></h2><p class="headcopy">Nesta simulação, você vê a diferença entre faturamento e o dinheiro que sobra depois de pagar ingredientes, embalagens e outros custos variáveis. O objetivo é aprender a calcular antes de aceitar pedidos.</p></div>
-<div class="sim-box">
-<div class="sim-grid">
-<div class="sim-stat"><b>20 pedidos</b><span>Quantidade hipotética de encomendas</span></div>
-<div class="sim-stat"><b>R$ 1.700</b><span>Faturamento bruto: 20 × R$ 85</span></div>
-<div class="sim-stat"><b>R$ 700</b><span>Saldo após R$ 1.000 em custos variáveis simulados</span></div>
-</div>
-<p class="sim-formula"><strong>Exemplo:</strong> se cada pedido custar R$ 50 para produzir e for vendido por R$ 85, a diferença é de R$ 35 por pedido, antes de outras despesas.</p>
-<p class="sim-disclaimer">Simulação meramente ilustrativa, não representa ganhos de alunos nem promessa de faturamento. O resultado real depende da demanda, dos preços, dos custos, das taxas, dos impostos e da execução. O saldo mostrado não é lucro líquido.</p>
-<a class="sim-cta" href="#oferta">QUERO APRENDER A VENDER COM MARGEM — R$ 27 →</a>
+<section class="block stage" id="metodo"><div class="wrap">
+<div class="center"><span class="eyebrow gold">Método 4P</span><h2>O Método 4P: da sua cozinha ao pedido confirmado</h2></div>
+<div class="four">
+<article class="four-card"><div class="mech-art art-menu" role="img" aria-label="Cardápio natalino com doces e kits"><div class="art-overline">PRODUTO</div><div class="art-icons">🍪 <span>🍫</span> 🎁</div><div class="art-pill">Presente e ceia</div></div><div class="inner"><span class="number">PASSO 01</span><h3>Produto</h3><p>Escolha poucos doces que fazem sentido para o Natal e monte duas linhas: presente e ceia. Cardápio claro, escolha fácil.</p></div></article>
+<article class="four-card"><div class="mech-art art-price" role="img" aria-label="Controle de custos e preço de venda"><div class="art-overline">PREÇO</div><div class="art-receipt"><span>Custo dos ingredientes</span><b>✓</b><span>Embalagem e produção</span><b>✓</b><strong>Preço de venda</strong><strong>R$</strong></div></div><div class="inner"><span class="number">PASSO 02</span><h3>Preço</h3><p>Anote o custo de cada ingrediente, some embalagem e produção e só então defina o preço. A conta vem antes do "sim".</p></div></article>
+<article class="four-card"><div class="mech-art art-promo" role="img" aria-label="Divulgação de Natal no celular"><div class="art-phone"><div class="art-phonebar">SEU NATAL 🎄</div><div class="art-photo">🎁🍫🍪</div><div class="art-msg">Cardápio disponível!</div><div class="art-chat">Quero encomendar! 💬</div></div></div><div class="inner"><span class="number">PASSO 03</span><h3>Promoção</h3><p>Publicações e mensagens que mostram o cardápio e convidam a encomendar, no Instagram, nos Stories e no WhatsApp.</p></div></article>
+<article class="four-card"><div class="mech-art art-orders" role="img" aria-label="Lista de pedidos de Natal organizada"><div class="art-overline">PRODUÇÃO</div><div class="art-order">✓ Pedido confirmado</div><div class="art-order">✓ Pagamento anotado</div><div class="art-order">✓ Entrega programada</div></div><div class="inner"><span class="number">PASSO 04</span><h3>Produção</h3><p>Limite de pedidos, controle de pagamentos e entregas programadas. Você aceita o que cabe na sua cozinha.</p></div></article>
 </div>
 </div></section>
 <section class="block result"><div class="wrap wish">
 <div><span class="eyebrow">Vender com mais controle</span><h2>Dezembro pode ser corrido. Faça cada encomenda <em style="font-style:normal;color:#a14b56">valer a pena.</em></h2><ul><li><span>✓</span>Monte um cardápio com opções claras para o cliente escolher.</li><li><span>✓</span>Calcule o valor de venda considerando os custos de cada doce.</li><li><span>✓</span>Organize os pedidos para saber o que produzir, cobrar e entregar.</li></ul></div>
-<div class="wish-image"><img src="pedidos.webp" alt="Materiais de organização de encomendas para confeitaria natalina" width="1500" height="844" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Saber quanto entrou, quanto custou e quanto cada pedido deixou.</h3></div></div>
+<div class="wish-image"><img src="pedidos-maos.webp" alt="Mãos anotando pedidos de encomenda ao lado de doces natalinos" width="1280" height="720" loading="lazy"><div class="wish-card"><span class="label">O objetivo</span><h3>Saber quanto entrou, quanto custou e quanto cada pedido deixou.</h3></div></div>
 </div></section>
 <section class="block kit"><div class="wrap">
 <div class="center"><span class="eyebrow">O que você aprende</span><h2>Seis módulos para preparar suas encomendas e começar a oferecer seus doces.</h2><p class="headcopy">Você vai da escolha do produto ao preço, divulgação, atendimento e entrega. Cada etapa prepara a seguinte.</p></div>
@@ -288,7 +305,7 @@ fbq('track','PageView');
 <p class="ref-explainer">*Soma dos valores de referência dos materiais extras.</p>
 <div class="pricing-label">Leve o treinamento e todos os extras por</div>
 <div class="price">R$ 27</div>
-<p class="price-note">Pagamento único • acesso digital</p>
+<p class="price-note">Acesso vitalício, sem mensalidade</p>
 <div class="guarantee-seal" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 5 5.6v5.8c0 4.3 2.9 7.7 7 9.2 4.1-1.5 7-4.9 7-9.2V5.6L12 2.8Z" fill="#e7f3ea" stroke="#2d6b52" stroke-width="1.6"/><path d="M8.7 12.1 11 14.4l4.4-4.6" fill="none" stroke="#2d6b52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Garantia de 7 dias</strong><span>Se não fizer sentido para você, peça o reembolso em até 7 dias</span></div></div>
 <a class="checkout-button" id="checkout-link" href="https://pay.mycheckoutt.com/01a1d60b-9e27-73f8-9f71-3f6ca6399772?ref=">QUERO MEU NATAL DE ENCOMENDAS POR R$ 27 →</a>
 <div class="secure-line"><span>✓ 6 módulos</span><span>✓ 5 conteúdos extras</span><span>✓ Checkout online</span></div>
@@ -302,6 +319,10 @@ fbq('track','PageView');
 </div></div></section>
 </main>
 <footer><div class="wrap"><strong>Natal de Encomendas</strong><span>Blackmamba Marketing e Promoção Ltda. • CNPJ 53.258.829/0001-55</span><small>Produto digital • 2026</small></div></footer>
+<div class="buy-bar" id="buy-bar">
+<p class="buy-bar-note">R$ 27 · Garantia de 7 dias</p>
+<a class="buy-bar-btn" href="https://pay.mycheckoutt.com/01a1d60b-9e27-73f8-9f71-3f6ca6399772?ref=">Quero por R$ 27</a>
+</div>
 <script>
 (function () {
   var HOST = 'pay.mycheckoutt.com';
@@ -376,7 +397,24 @@ fbq('track','PageView');
   }
 
   var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  function pixelReady() {
+    try {
+      return !!(window.fbq && window.fbq.loaded && typeof window.fbq.callMethod === 'function');
+    } catch (err) {
+      return false;
+    }
+  }
+  function leavesInThisTab(ev, anchor) {
+    if (!ev || ev.button) return false;
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return false;
+    if (!ev.cancelable) return false;
+    var target = anchor && anchor.getAttribute ? (anchor.getAttribute('target') || '') : '';
+    if (String(target).toLowerCase() === '_blank') return false;
+    return true;
+  }
   document.addEventListener('click', function (ev) {
+    var dest = '';
+    var hold = false;
     try {
       var node = ev.target;
       if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
@@ -390,9 +428,74 @@ fbq('track','PageView');
         if (seen.has(ev)) return;
         seen.add(ev);
       }
-      if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
+      try {
+        if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
+      } catch (err) {}
+      if (pixelReady() || !leavesInThisTab(ev, anchor)) return;
+      dest = anchor.href;
+      hold = true;
+      ev.preventDefault();
     } catch (e) {}
+    if (!hold || !dest) return;
+    var started = Date.now();
+    var left = false;
+    function go() {
+      if (left) return;
+      left = true;
+      try { window.location.href = dest; } catch (err) {}
+    }
+    (function waitPixel() {
+      if (left) return;
+      try {
+        if (pixelReady()) {
+          setTimeout(go, 150);
+          return;
+        }
+      } catch (err) {}
+      if (Date.now() - started >= 800) {
+        go();
+        return;
+      }
+      setTimeout(waitPixel, 40);
+    })();
   }, true);
+})();
+</script>
+<script>
+(function () {
+  var bar = document.getElementById('buy-bar');
+  var heroBtn = document.getElementById('hero-checkout');
+  var offerBtn = document.getElementById('checkout-link');
+  if (!bar || !heroBtn) return;
+  var heroOut = false;
+  var offerIn = false;
+  function apply() {
+    var show = heroOut && !offerIn;
+    bar.classList.toggle('is-visible', show);
+    document.body.classList.toggle('has-buy-bar', show);
+  }
+  if (typeof IntersectionObserver === 'function') {
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].target === heroBtn) heroOut = !entries[i].isIntersecting;
+        if (entries[i].target === offerBtn) offerIn = entries[i].isIntersecting;
+      }
+      apply();
+    }, { threshold: 0 });
+    io.observe(heroBtn);
+    if (offerBtn) io.observe(offerBtn);
+  } else {
+    function onScroll() {
+      heroOut = window.scrollY >= 400;
+      if (offerBtn) {
+        var r = offerBtn.getBoundingClientRect();
+        offerIn = r.bottom > 0 && r.top < window.innerHeight;
+      }
+      apply();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 })();
 </script>
 </body></html>
