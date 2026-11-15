@@ -203,11 +203,26 @@ footer small{color:#c8b6ba;font-size:11px}
 @media(max-width:740px){.mech-art{height:145px}.bonus-art{min-height:200px}.bonus-art-icon{font-size:49px}.bonus-art strong{font-size:14px}}
 
 </style>
+<script>
+(function () {
+  try {
+    var params = new URLSearchParams(location.search);
+    var utm = (params.get('utm_source') || '').toLowerCase();
+    var fbclid = params.get('fbclid') || '';
+    if (params.get('bm_test') === '1' || utm === 'teste' || utm === 'diag' || /^(DIAG|PROD|TESTE)/.test(fbclid)) {
+      sessionStorage.setItem('natal:test', '1');
+    }
+    if (sessionStorage.getItem('natal:test') === '1') window.__natalTest = true;
+  } catch (e) {}
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
+if (!window.__natalTest) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1128907580042803');
 fbq('track','PageView');
+}
 </script>
 <!-- End Meta Pixel Code -->
 </head>
@@ -397,12 +412,87 @@ fbq('track','PageView');
   }
 
   var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  var PIXEL_ID = '1128907580042803';
   function pixelReady() {
     try {
       return !!(window.fbq && window.fbq.loaded && typeof window.fbq.callMethod === 'function');
     } catch (err) {
       return false;
     }
+  }
+  function isNatalTest() {
+    try {
+      return window.__natalTest === true || sessionStorage.getItem('natal:test') === '1';
+    } catch (err) {
+      return false;
+    }
+  }
+  function cookieValue(name) {
+    var parts = document.cookie ? document.cookie.split('; ') : [];
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].indexOf(name + '=') === 0) {
+        try { return decodeURIComponent(parts[i].slice(name.length + 1)); } catch (err) { return parts[i].slice(name.length + 1); }
+      }
+    }
+    return '';
+  }
+  function currentFbclid() {
+    try {
+      var fromUrl = new URLSearchParams(location.search).get('fbclid') || '';
+      if (fromUrl) return fromUrl;
+      var stored = JSON.parse(sessionStorage.getItem(STORE) || '{}');
+      return stored && stored.fbclid ? stored.fbclid : '';
+    } catch (err) {
+      return '';
+    }
+  }
+  function fbcValue() {
+    var existing = cookieValue('_fbc');
+    if (existing) return existing;
+    var fbclid = currentFbclid();
+    if (!fbclid) return '';
+    return 'fb.1.' + Date.now() + '.' + fbclid;
+  }
+  function newEventId() {
+    try {
+      if (window.crypto && typeof crypto.randomUUID === 'function') return 'ic_' + crypto.randomUUID();
+    } catch (err) {}
+    return 'ic_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
+  }
+  function sendCapi(eventId, testMode) {
+    try {
+      if (!navigator.sendBeacon) return;
+      var body = JSON.stringify({
+        event_id: eventId,
+        event_source_url: location.href,
+        fbp: cookieValue('_fbp'),
+        fbc: fbcValue(),
+        user_agent: navigator.userAgent,
+        test: !!testMode
+      });
+      navigator.sendBeacon('/api/capi-ic', new Blob([body], { type: 'application/json' }));
+    } catch (err) {}
+  }
+  function sendIcImage(eventId) {
+    var fbp = cookieValue('_fbp');
+    var fbc = fbcValue();
+    var parts = [
+      'id=' + PIXEL_ID,
+      'ev=InitiateCheckout',
+      'eid=' + encodeURIComponent(eventId),
+      'cd[value]=27',
+      'cd[currency]=BRL',
+      'dl=' + encodeURIComponent(location.href),
+      'rl=' + encodeURIComponent(document.referrer || ''),
+      'ts=' + Date.now()
+    ];
+    if (fbp) parts.push('fbp=' + encodeURIComponent(fbp));
+    if (fbc) parts.push('fbc=' + encodeURIComponent(fbc));
+    var img = new Image();
+    img.src = 'https://www.facebook.com/tr?' + parts.join('&');
+  }
+  function trackWithPixel(eventId) {
+    window.fbq('track', 'InitiateCheckout', EVENT_PARAMS, { eventID: eventId });
   }
   function leavesInThisTab(ev, anchor) {
     if (!ev || ev.button) return false;
@@ -415,6 +505,8 @@ fbq('track','PageView');
   document.addEventListener('click', function (ev) {
     var dest = '';
     var hold = false;
+    var eventId = '';
+    var delivered = false;
     try {
       var node = ev.target;
       if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
@@ -428,15 +520,29 @@ fbq('track','PageView');
         if (seen.has(ev)) return;
         seen.add(ev);
       }
-      try {
-        if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout', EVENT_PARAMS);
-      } catch (err) {}
-      if (pixelReady() || !leavesInThisTab(ev, anchor)) return;
+      eventId = newEventId();
+      if (isNatalTest()) {
+        sendCapi(eventId, true);
+        return;
+      }
+      if (pixelReady()) {
+        try { trackWithPixel(eventId); } catch (err) {}
+        sendCapi(eventId, false);
+        return;
+      }
+      if (!leavesInThisTab(ev, anchor)) {
+        try {
+          if (typeof window.fbq === 'function') trackWithPixel(eventId);
+          else sendIcImage(eventId);
+        } catch (err) {}
+        sendCapi(eventId, false);
+        return;
+      }
       dest = anchor.href;
       hold = true;
       ev.preventDefault();
     } catch (e) {}
-    if (!hold || !dest) return;
+    if (!hold || !dest || !eventId) return;
     var started = Date.now();
     var left = false;
     function go() {
@@ -444,16 +550,27 @@ fbq('track','PageView');
       left = true;
       try { window.location.href = dest; } catch (err) {}
     }
+    function deliver(mode) {
+      if (delivered) return;
+      delivered = true;
+      try {
+        if (mode === 'fbq') trackWithPixel(eventId);
+        else sendIcImage(eventId);
+      } catch (err) {}
+      sendCapi(eventId, false);
+    }
     (function waitPixel() {
       if (left) return;
       try {
         if (pixelReady()) {
+          deliver('fbq');
           setTimeout(go, 150);
           return;
         }
       } catch (err) {}
       if (Date.now() - started >= 800) {
-        go();
+        deliver('image');
+        setTimeout(go, 100);
         return;
       }
       setTimeout(waitPixel, 40);
