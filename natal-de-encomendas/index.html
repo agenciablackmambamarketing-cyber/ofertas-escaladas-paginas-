@@ -221,6 +221,17 @@ footer small{color:#c8b6ba;font-size:11px}
 .access-steps{max-width:470px;padding:20px;margin:24px auto 0;border-radius:13px;background:#fffaf4;border:1px solid var(--line);text-align:left}.access-steps h3{font-size:19px;margin:0 0 15px}.access-steps ol{margin:0;padding-left:23px;display:grid;gap:10px;font-size:14px;color:var(--muted);line-height:1.5}.access-steps strong{color:var(--ink)}.seller-note{max-width:650px;margin:26px auto 0;padding-top:22px;border-top:1px solid var(--line);font-size:14px;line-height:1.65;color:var(--muted);text-align:center}.seller-note strong{display:block;font-size:16px;color:var(--ink)}.seller-note a{overflow-wrap:anywhere;text-underline-offset:3px}
 @media(max-width:740px){.menu-layout{grid-template-columns:1fr;gap:20px}.menu-shot img{max-height:290px}.recipe-list{gap:10px}.recipe-list li{padding:17px 13px}.recipe-list strong{font-size:17px}.channel-grid{grid-template-columns:1fr}.channel-card{padding:23px}.channel-card h3{font-size:23px}.menu-note{font-size:14px}.seller-note{padding-left:10px;padding-right:10px}}
 @media(max-width:350px){.recipe-list{grid-template-columns:1fr}}
+/* Mariana e estrutura de depoimentos. A seção permanece oculta até receber relatos. */
+.guide{background:#fffaf4}
+.guide-inner{padding-top:28px;padding-bottom:28px}
+.guide-focus{margin:15px 0 0;color:var(--muted);font-size:16px}
+.guide-focus strong{color:var(--wine)}
+.testimonials{background:#f0e7dc}
+.testimonials[hidden]{display:none}
+.testimonial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:920px;margin:28px auto 0}
+.testimonial-chat{margin:0;padding:20px;border:1px solid #d8cfc1;border-radius:15px;background:#eee7df}
+.testimonial-message{position:relative;margin:0;padding:16px 18px;border-radius:3px 14px 14px 14px;background:#fff;color:#262d2b;font-size:16px;line-height:1.55;box-shadow:0 2px 5px #3445381a;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:740px){.guide-inner{padding-top:10px;padding-bottom:10px}.testimonial-grid{grid-template-columns:1fr;gap:12px}.testimonial-chat{padding:14px}}
 </style>
 <script>
 (function () {
@@ -278,6 +289,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <article><span class="friction-number">01</span><h3>“O que eu vou vender?”</h3><p>Escolha uma linha curta de doces e kits para presente. Os modelos ajudam a definir a composição de cada oferta.</p></article>
 <article><span class="friction-number">02</span><h3>“Quanto eu cobro?”</h3><p>Coloque os custos no papel e siga os exemplos de precificação antes de enviar o orçamento.</p></article>
 <article><span class="friction-number">03</span><h3>“Como eu ofereço?”</h3><p>Adapte os textos de divulgação, envie o cardápio e conduza a conversa até a confirmação do pedido.</p></article>
+</div>
+</div></section>
+
+<section class="block guide" id="mariana" aria-labelledby="guide-headline"><div class="wrap guide-inner">
+<img class="guide-avatar" src="avatar-mariana.webp" width="480" height="480" alt="Ilustração da Mariana, personagem e voz do Natal de Encomendas" loading="lazy">
+<div>
+<span class="eyebrow">Conheça quem vai te guiar</span>
+<h2 id="guide-headline">Mariana Valença</h2>
+<p class="lead">Doce bom merece mais do que elogio: precisa de um preço calculado e de uma oferta que as pessoas consigam pedir. Eu sou a Mariana, a voz do Natal de Encomendas, e vou te mostrar como escolher seus produtos, fazer a conta e preparar sua divulgação.</p>
+<p class="guide-focus"><strong>Produto. Preço. Promoção. Produção.</strong> Quatro passos para tirar sua oferta do papel e apresentar seus doces neste Natal.</p>
+<p class="guide-note">Mariana Valença é a personagem e voz da marca Natal de Encomendas.</p>
 </div>
 </div></section>
 
@@ -364,6 +386,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div><span class="eyebrow">Da receita à abertura da agenda</span><h2 id="start-headline">Abra suas encomendas com o preço e o prazo definidos.</h2><p class="headcopy">Siga uma sequência que termina numa oferta pronta para apresentar: produto testado, conta preenchida, foto do seu doce e condições de encomenda claras.</p></div>
 <ol class="start-steps"><li><strong>Teste e escolha os produtos</strong><span>Faça o lote piloto e anote rendimento, preparo e conservação.</span></li><li><strong>Calcule a caixa completa</strong><span>Inclua ingredientes, embalagem, trabalho e taxas antes de definir o preço.</span></li><li><strong>Prepare o cardápio e a mensagem</strong><span>Use fotos dos seus doces e informe composição, valor e datas disponíveis.</span></li><li><strong>Abra a agenda de pedidos</strong><span>Registre quantidade, pagamento e entrega. Confirme apenas o volume que consegue produzir.</span></li></ol>
 </div></section>
+
+<!-- Depoimentos: insira os relatos originais nos oito blocos abaixo e remova hidden desta seção quando houver conteúdo. -->
+<section class="block testimonials" id="depoimentos" aria-labelledby="testimonials-headline" hidden>
+<div class="wrap">
+<div class="center"><span class="eyebrow">Experiências reais</span><h2 id="testimonials-headline">O que dizem sobre o Natal de Encomendas</h2></div>
+<div class="testimonial-grid">
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
+</div></div></section>
 
 <section class="block offer-bg" id="oferta" aria-labelledby="offer-headline"><div class="wrap"><div class="offer-card">
 <span class="eyebrow">O Natal tem data. Sua oferta precisa chegar antes.</span>
