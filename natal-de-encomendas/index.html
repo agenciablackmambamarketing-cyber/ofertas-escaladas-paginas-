@@ -227,11 +227,25 @@ footer small{color:#c8b6ba;font-size:11px}
 .guide-focus{margin:15px 0 0;color:var(--muted);font-size:16px}
 .guide-focus strong{color:var(--wine)}
 .testimonials{background:#f0e7dc}
-.testimonials[hidden]{display:none}
-.testimonial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:920px;margin:28px auto 0}
-.testimonial-chat{margin:0;padding:20px;border:1px solid #d8cfc1;border-radius:15px;background:#eee7df}
-.testimonial-message{position:relative;margin:0;padding:16px 18px;border-radius:3px 14px 14px 14px;background:#fff;color:#262d2b;font-size:16px;line-height:1.55;box-shadow:0 2px 5px #3445381a;white-space:pre-wrap;overflow-wrap:anywhere}
-@media(max-width:740px){.guide-inner{padding-top:10px;padding-bottom:10px}.testimonial-grid{grid-template-columns:1fr;gap:12px}.testimonial-chat{padding:14px}}
+.testimonial-slider{max-width:680px;margin:28px auto 0}
+.testimonial-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;border-radius:15px}
+.testimonial-track::-webkit-scrollbar{display:none}
+.testimonial-track:focus-visible{outline:3px solid #286c4c;outline-offset:4px}
+.testimonial-chat{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;margin:0;border:1px solid #d4c9bd;border-radius:15px;background:#eee7df}
+.testimonial-header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:15px 20px;background:#165d45;color:#fff}
+.testimonial-header strong{font-size:18px;line-height:1.25}.testimonial-header span{font-size:13px;line-height:1.3;color:#e1f2e8}
+.testimonial-conversation{min-height:240px;padding:20px;background:#eee7df}
+.testimonial-message{position:relative;margin:0;padding:18px 20px;border-radius:4px 15px 15px 15px;background:#fff;color:#262d2b;font-size:17px;line-height:1.55;box-shadow:0 2px 5px #3445381a;overflow-wrap:anywhere}
+.testimonial-caption{margin:14px 0 0;color:#635e58;font-size:11px;line-height:1.4;text-align:right}
+.testimonial-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:18px}
+.testimonial-controls[hidden]{display:none}
+.testimonial-controls button{min-height:44px;padding:9px 14px;border:1px solid #b5aa9f;border-radius:10px;background:#fff;color:#274f3d;font-size:15px;font-weight:800;cursor:pointer}
+.testimonial-controls button:disabled{opacity:.42;cursor:default}
+.testimonial-controls button:focus-visible{outline:3px solid #286c4c;outline-offset:3px}
+.testimonial-count{min-width:48px;text-align:center;font-size:14px;font-weight:800;color:#5d4c50}
+.testimonial-results{margin:18px auto 0;text-align:center;color:#695a5f;font-size:12px;line-height:1.5}
+@media(max-width:740px){.guide-inner{padding-top:10px;padding-bottom:10px}.testimonial-conversation{padding:15px;min-height:220px}.testimonial-message{padding:16px;font-size:16px}.testimonial-header{padding:14px 16px}.testimonial-controls{gap:10px}.testimonial-controls button{padding:9px 11px}}
+@media(prefers-reduced-motion:reduce){.testimonial-track{scroll-behavior:auto}}
 </style>
 <script>
 (function () {
@@ -387,20 +401,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ol class="start-steps"><li><strong>Teste e escolha os produtos</strong><span>Faça o lote piloto e anote rendimento, preparo e conservação.</span></li><li><strong>Calcule a caixa completa</strong><span>Inclua ingredientes, embalagem, trabalho e taxas antes de definir o preço.</span></li><li><strong>Prepare o cardápio e a mensagem</strong><span>Use fotos dos seus doces e informe composição, valor e datas disponíveis.</span></li><li><strong>Abra a agenda de pedidos</strong><span>Registre quantidade, pagamento e entrega. Confirme apenas o volume que consegue produzir.</span></li></ol>
 </div></section>
 
-<!-- Depoimentos: insira os relatos originais nos oito blocos abaixo e remova hidden desta seção quando houver conteúdo. -->
-<section class="block testimonials" id="depoimentos" aria-labelledby="testimonials-headline" hidden>
+<!-- Relatos fornecidos em texto; apresentação reconstituída em formato de conversa. -->
+<section class="block testimonials" id="depoimentos" aria-labelledby="testimonials-headline">
 <div class="wrap">
-<div class="center"><span class="eyebrow">Experiências reais</span><h2 id="testimonials-headline">O que dizem sobre o Natal de Encomendas</h2></div>
-<div class="testimonial-grid">
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-<article class="testimonial-chat"><blockquote class="testimonial-message"></blockquote></article>
-</div></div></section>
+<div class="center"><span class="eyebrow">Experiências compartilhadas</span><h2 id="testimonials-headline">O que dizem sobre o Natal de Encomendas</h2><p class="headcopy">Deslize para conhecer os relatos.</p></div>
+<div class="testimonial-slider" role="region" aria-roledescription="carrossel" aria-label="Depoimentos sobre o Natal de Encomendas">
+<div class="testimonial-track" id="testimonial-track" tabindex="0" aria-label="Depoimentos: deslize ou use as setas para navegar">
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 1 de 8, Camila R.">
+<div class="testimonial-header"><strong>Camila R.</strong><span>Campinas (SP)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Eu trabalhava em escritório e fazia doce só para a família. Segui o passo a passo do e-book, montei meu cardápio de Natal e fechei 63 encomendas em novembro e dezembro. Foi mais do que eu ganhava no emprego em dois meses. Em janeiro pedi demissão e hoje vivo da confeitaria.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 2 de 8, Juliana M.">
+<div class="testimonial-header"><strong>Juliana M.</strong><span>Belo Horizonte (MG)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">O que mais me ajudou foi a parte de precificação. Eu vendia no preço de custo e nem sabia. Depois que refiz minhas contas, o mesmo bolo de pote passou a dar lucro de verdade. Pela primeira vez eu sei quanto sobra no fim do mês.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 3 de 8, Patrícia S.">
+<div class="testimonial-header"><strong>Patrícia S.</strong><span>Recife (PE)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Eu tinha medo de não saber vender. O e-book ensina até o que escrever na mensagem para o cliente e como postar o cardápio no Instagram. Em duas semanas já tinha fila de encomendas e precisei fechar a agenda.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 4 de 8, Daniela F.">
+<div class="testimonial-header"><strong>Daniela F.</strong><span>Curitiba (PR)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Sou mãe solo e precisava de uma renda que coubesse na minha rotina. Trabalho em casa, no horário dos meus filhos, e consegui tirar um salário e meio só com o Natal. As receitas são simples e rendem bem, ótimas para produzir em quantidade.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 5 de 8, Renata A.">
+<div class="testimonial-header"><strong>Renata A.</strong><span>Goiânia (GO)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Achei que o material fosse só receita, mas ele ensina o negócio inteiro: embalagem, prazo de entrega, como organizar os pedidos. Minha primeira encomenda grande foi de 40 caixinhas para uma empresa. Foi aí que percebi que dava para ser profissão.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 6 de 8, Fernanda L.">
+<div class="testimonial-header"><strong>Fernanda L.</strong><span>Porto Alegre (RS)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Já fazia doces, mas vendia pouco e só para conhecidos. Com as estratégias de divulgação do e-book, comecei a aparecer para gente de fora do meu círculo. Este Natal triplicei o número de pedidos em relação ao ano passado.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 7 de 8, Aline T.">
+<div class="testimonial-header"><strong>Aline T.</strong><span>Salvador (BA)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">Estava desempregada e comecei com pouco dinheiro, seguindo a lista de ingredientes e o planejamento do e-book. Não gastei com coisa que não precisava. Fechei o Natal com lucro e já estou planejando a Páscoa do mesmo jeito.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+<article class="testimonial-chat" role="group" aria-roledescription="depoimento" aria-label="Depoimento 8 de 8, Luciana P.">
+<div class="testimonial-header"><strong>Luciana P.</strong><span>Rio Claro (SP)</span></div>
+<div class="testimonial-conversation"><blockquote class="testimonial-message">O e-book é direto e fácil de seguir. Eu li num fim de semana e já na segunda comecei a testar as receitas e divulgar. A Mariana explica de um jeito que dá confiança. Hoje a confeitaria é minha renda principal, e eu nem imaginava isso há alguns meses.</blockquote><p class="testimonial-caption">Depoimento enviado em texto · reconstituição visual</p></div>
+</article>
+</div>
+<div class="testimonial-controls" hidden>
+<button type="button" class="testimonial-prev" aria-controls="testimonial-track" aria-label="Depoimento anterior">← <span>Anterior</span></button>
+<span class="testimonial-count" aria-live="polite" aria-atomic="true">1 de 8</span>
+<button type="button" class="testimonial-next" aria-controls="testimonial-track" aria-label="Próximo depoimento"><span>Próximo</span> →</button>
+</div>
+</div>
+<p class="testimonial-results">Os relatos descrevem experiências individuais. Os resultados podem variar.</p>
+</div></section>
 
 <section class="block offer-bg" id="oferta" aria-labelledby="offer-headline"><div class="wrap"><div class="offer-card">
 <span class="eyebrow">O Natal tem data. Sua oferta precisa chegar antes.</span>
@@ -736,4 +783,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+<script>
+(function () {
+  var section = document.getElementById('depoimentos');
+  if (!section) return;
+  var track = section.querySelector('.testimonial-track');
+  var slides = track ? Array.prototype.slice.call(track.querySelectorAll('.testimonial-chat')) : [];
+  var controls = section.querySelector('.testimonial-controls');
+  var previous = section.querySelector('.testimonial-prev');
+  var next = section.querySelector('.testimonial-next');
+  var count = section.querySelector('.testimonial-count');
+  if (!track || !slides.length || !controls || !previous || !next || !count) return;
+  var active = 0;
+  function update() {
+    var edge = track.getBoundingClientRect().left;
+    var closest = Infinity;
+    slides.forEach(function (slide, index) {
+      var distance = Math.abs(slide.getBoundingClientRect().left - edge);
+      if (distance < closest) { closest = distance; active = index; }
+    });
+    count.textContent = (active + 1) + ' de ' + slides.length;
+    previous.disabled = active === 0;
+    next.disabled = active === slides.length - 1;
+  }
+  function move(delta) {
+    var target = Math.max(0, Math.min(slides.length - 1, active + delta));
+    var left = track.scrollLeft + slides[target].getBoundingClientRect().left - track.getBoundingClientRect().left;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollTo({ left: left, behavior: reduced ? 'auto' : 'smooth' });
+  }
+  previous.addEventListener('click', function () { move(-1); });
+  next.addEventListener('click', function () { move(1); });
+  track.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
+  });
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  controls.hidden = false;
+  update();
+})();
+</script>
 </body></html>
