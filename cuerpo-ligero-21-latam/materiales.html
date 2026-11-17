@@ -1,0 +1,29 @@
+<!doctype html><html lang="es-419"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Calendario de 21 días | Cuerpo Ligero 21</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f8f2;color:#1b2d23;font:16px/1.6 system-ui,Arial}main{max-width:940px;margin:auto;padding:36px 22px 90px}a{color:#3a6d43;font-weight:800}h1{font-size:clamp(38px,6vw,64px);letter-spacing:-.055em;line-height:1.05}.note{color:#637565}.notice{font-size:12px;font-weight:850;letter-spacing:.08em;color:#578645}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#fff;border:1px solid #e0e8dc;border-radius:16px;padding:20px}.card small{font-weight:850;color:#689e4e}.card h2{font-size:21px;margin:13px 0 7px}.card p{font-size:14px;color:#52665b;min-height:65px}.card label{font-size:13px;font-weight:750;display:flex;align-items:center;gap:9px}.bar{height:13px;border-radius:30px;background:#dce8d6;overflow:hidden;margin:12px 0 28px}.bar div{height:100%;width:0;background:#9fcc65;transition:width .2s}button{border:0;border-radius:9px;background:#dceecf;padding:12px 18px;font-weight:800;cursor:pointer;margin:6px 6px 6px 0}footer{color:#6c806d;font-size:12px;margin-top:40px}@media(max-width:750px){.cards{grid-template-columns:1fr}.card p{min-height:0}}@media print{.controls,a{display:none!important}.cards{grid-template-columns:repeat(3,1fr)}.card{break-inside:avoid}}</style></head><body><main><a href="./index.html">← Volver a la página</a><p class="notice">MUESTRA EDUCATIVA · VISTA PREVIA</p><h1>Tu ruta de 21 días.</h1><p class="note">Una agenda para organizar hábitos y registrar lo aprendido. No es una dieta ni una prescripción de ejercicios. Las casillas marcadas se guardan únicamente en este navegador.</p><strong id="status">0 de 21 días registrados</strong><div class="bar"><div id="fill"></div></div><div class="cards" id="cards"></div><div class="controls"><button id="clear" type="button">Borrar marcas</button><button onclick="window.print()" type="button">Imprimir calendario</button></div><footer>Material demostrativo en revisión. No sustituye indicaciones profesionales. No se envían datos.</footer></main><script>
+const items=[
+["Punto de partida","Escribe una meta de comportamiento realista para las próximas semanas."],
+["Organización","Elige un momento para planificar las comidas de mañana."],
+["Entorno","Identifica dos alimentos prácticos que puedes tener disponibles en casa."],
+["Movimiento posible","Registra una oportunidad de movimiento adecuada para tu situación."],
+["Compras","Prepara una lista sencilla para evitar decisiones de último momento."],
+["Pausas","Observa cómo cambian tu energía y concentración a lo largo del día."],
+["Primera revisión","Anota qué funcionó y qué necesitas simplificar."],
+["Comidas","Organiza las comidas siguiendo las recomendaciones individuales que ya tengas."],
+["Preparación","Deja listos utensilios o ingredientes que faciliten tu rutina."],
+["Actividad cotidiana","Identifica una actividad segura y compatible con tus necesidades."],
+["Descanso","Observa tus horarios habituales de descanso."],
+["Atención a la comida","Come una vez sin distracciones y registra cómo te sentiste."],
+["Flexibilidad","Crea una alternativa sencilla para los días ocupados."],
+["Segunda revisión","Reconoce un avance que no dependa del peso corporal."],
+["Planificación","Organiza los próximos tres días con metas posibles."],
+["Apoyo","Identifica una persona o recurso que facilite tu continuidad."],
+["Autonomía","Anota tres hábitos que quieras mantener después del programa."],
+["Entorno","Ajusta un detalle del espacio que dificulte tu rutina."],
+["Movimiento","Revisa si las actividades elegidas todavía encajan en tu día."],
+["Revisión","Registra lo aprendido y cuándo sería conveniente buscar asesoría profesional."],
+["Siguientes pasos","Prepara un plan sencillo para la próxima semana."]
+];
+const root=document.querySelector("#cards");const key="cuerpo-ligero-21-latam-demostracion";let checked={};try{checked=JSON.parse(localStorage.getItem(key)||"{}")}catch(e){}
+function update(){const n=Object.values(checked).filter(Boolean).length;document.querySelector("#status").textContent=n+" de 21 días registrados";document.querySelector("#fill").style.width=Math.round(100*n/21)+"%";try{localStorage.setItem(key,JSON.stringify(checked))}catch(e){}}
+items.forEach(([name,detail],i)=>{const id="d"+(i+1);const d=document.createElement("div");d.className="card";d.innerHTML="<small>DÍA "+String(i+1).padStart(2,"0")+"</small><h2>"+name+"</h2><p>"+detail+"</p><label><input type='checkbox' id='"+id+"'> Registrar tarea</label>";root.appendChild(d);const el=d.querySelector("input");el.checked=!!checked[id];el.addEventListener("change",()=>{checked[id]=el.checked;update()})});
+document.querySelector("#clear").addEventListener("click",()=>{checked={};document.querySelectorAll("input[type=checkbox]").forEach(el=>el.checked=false);update()});update();
+</script></body></html>
