@@ -15,7 +15,7 @@ Promessa: um roteiro de 21 dias para reduzir improvisação e construir consist�
 Não usar: nome, imagem, vídeo, história ou endosso de Cariani na oferta; depoimentos inventados; antes/depois; alegações de perder X kg; alegações de tratar doenças ou efeitos de suplementos.
 
 ## Oferta e funil
-Preço-base proposto R$197; premium planejado R$297 somente com entregáveis efetivos.
+Preço-base de entrada para o teste inicial: R$47 à vista. Preços de premium, upsell e order bump ainda não definidos; serão decididos a partir das métricas reais e dos entregáveis validados.
 Meta Ads -> VSL / conteúdo explicativo -> Página -> checkout (PENDENTE) -> entrega -> continuidade (proposta R$147).
 Roteiro da página: hero curta, problema, método, demonstração, módulos, prova real após coleta, oferta, FAQ, garantia e rodapé.
 CTA sem valor comercial enquanto revisão, materiais, vídeos e checkout estiverem pendentes.
@@ -35,3 +35,8 @@ CTA sem valor comercial enquanto revisão, materiais, vídeos e checkout estiver
 6. Revisar política de anúncios sobre atributos pessoais, alegações e promessas de emagrecimento.
 7. Validar criativos em múltiplos ângulos com pessoas reais ou mídia licenciada; não fabricar prova social.
 8. Testar entrega de acesso, compra e reembolso antes de ativar vendas.
+
+## Atualização de 17/11/2026
+- Decisão comercial: iniciar com preço de R$47 (no lugar da proposta inicial de R$197).
+- Página de prévia reflete R$47. Checkout permanece desativado.
+- R$47 é um ticket de teste, não uma margem ou CPA validado. Não tratar como oferta lançada.
