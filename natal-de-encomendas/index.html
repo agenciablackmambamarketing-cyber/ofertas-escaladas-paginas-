@@ -554,141 +554,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
-  var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
-  var PIXEL_ID = '1128907580042803';
-  function pixelReady() {
-    try {
-      return !!(window.fbq && window.fbq.loaded && typeof window.fbq.callMethod === 'function');
-    } catch (err) {
-      return false;
-    }
-  }
+  // A landing-page CTA click is NOT an initiated checkout.
+  // Track it separately; leave the real InitiateCheckout/Purchase to the payment provider.
   function isNatalTest() {
     try {
       return window.__natalTest === true || sessionStorage.getItem('natal:test') === '1';
-    } catch (err) {
-      return false;
-    }
-  }
-  function cookieValue(name) {
-    var parts = document.cookie ? document.cookie.split('; ') : [];
-    for (var i = 0; i < parts.length; i++) {
-      if (parts[i].indexOf(name + '=') === 0) {
-        try { return decodeURIComponent(parts[i].slice(name.length + 1)); } catch (err) { return parts[i].slice(name.length + 1); }
-      }
-    }
-    return '';
-  }
-  function newEventId() {
-    return 'ic-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
-  }
-  function sendClickImage(eventId) {
-    var parts = [
-      'id=' + PIXEL_ID,
-      'ev=InitiateCheckout',
-      'eid=' + encodeURIComponent(eventId),
-      'cd[value]=27',
-      'cd[currency]=BRL',
-      'dl=' + encodeURIComponent(location.href),
-      'noscript=1'
-    ];
-    if (!cookieValue('_fbc')) {
-      var fbclid = rawParam(location.search, 'fbclid');
-      if (fbclid) parts.push('fbc=' + encodeURIComponent('fb.1.' + Date.now() + '.' + fbclid));
-    }
-    var img = new Image();
-    img.src = 'https://www.facebook.com/tr?' + parts.join('&');
-  }
-  function trackWithPixel(eventId) {
-    window.fbq('track', 'InitiateCheckout', EVENT_PARAMS, { eventID: eventId });
-  }
-  function leavesInThisTab(ev, anchor) {
-    if (!ev || ev.button) return false;
-    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return false;
-    if (!ev.cancelable) return false;
-    var target = anchor && anchor.getAttribute ? (anchor.getAttribute('target') || '') : '';
-    if (String(target).toLowerCase() === '_blank') return false;
-    return true;
+    } catch (err) { return false; }
   }
   document.addEventListener('click', function (ev) {
-    var dest = '';
-    var hold = false;
-    var eventId = '';
-    var delivered = false;
+    var node = ev.target;
+    if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
+    var anchor = node && node.closest ? node.closest('a') : null;
+    if (!anchor || !isCheckoutHref(anchor.getAttribute('href') || '') || isNatalTest()) return;
+    var placement = anchor.id === 'hero-checkout-link' ? 'hero' :
+      anchor.id === 'checkout-link' ? 'offer' :
+      anchor.classList.contains('buy-bar-btn') ? 'sticky' : 'footer';
     try {
-      var node = ev.target;
-      if (node && node.nodeType !== 1) node = node.parentElement || node.parentNode;
-      var anchor = node && node.closest ? node.closest('a') : null;
-      if (!anchor) {
-        while (node && node.nodeType === 1 && node.tagName !== 'A') node = node.parentNode;
-        if (node && node.tagName === 'A') anchor = node;
-      }
-      if (!anchor || !isCheckoutHref(anchor.getAttribute('href') || '')) return;
-      if (seen) {
-        if (seen.has(ev)) return;
-        seen.add(ev);
-      }
-      eventId = newEventId();
-      if (isNatalTest()) return;
-      // This event measures the LP click, not a confirmed checkout load or payment.
-      // Keep the existing Meta InitiateCheckout signal until the checkout has its own verified integration.
-      try {
-        var placement = anchor.id === 'hero-checkout-link' ? 'hero' : anchor.id === 'checkout-link' ? 'offer' :
-          anchor.classList.contains('buy-bar-btn') ? 'sticky' : 'footer';
-        window.dataLayer = window.dataLayer || [];
-        (function natalGtag() { window.dataLayer.push(arguments); })('event', 'checkout_click', {
-          send_to: 'G-JENN1KFKNK',
-          checkout_placement: placement,
-          product_name: 'Natal de Encomendas'
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'checkout_click',
+        checkout_placement: placement,
+        product_name: 'Natal de Encomendas'
+      });
+    } catch (err) {}
+    try {
+      if (typeof window.fbq === 'function') {
+        window.fbq('trackCustom', 'CheckoutClick', {
+          value: 27, currency: 'BRL', checkout_placement: placement
         });
-      } catch (analyticsError) {}
-      if (pixelReady()) {
-        try { trackWithPixel(eventId); } catch (err) {}
-        return;
       }
-      if (!leavesInThisTab(ev, anchor)) {
-        try {
-          if (typeof window.fbq === 'function') trackWithPixel(eventId);
-          else sendClickImage(eventId);
-        } catch (err) {}
-        return;
-      }
-      dest = anchor.href;
-      hold = true;
-      ev.preventDefault();
-    } catch (e) {}
-    if (!hold || !dest || !eventId) return;
-    var started = Date.now();
-    var left = false;
-    function go() {
-      if (left) return;
-      left = true;
-      try { window.location.href = dest; } catch (err) {}
-    }
-    function deliver(mode) {
-      if (delivered) return;
-      delivered = true;
-      try {
-        if (mode === 'fbq') trackWithPixel(eventId);
-        else sendClickImage(eventId);
-      } catch (err) {}
-    }
-    (function waitPixel() {
-      if (left) return;
-      try {
-        if (pixelReady()) {
-          deliver('fbq');
-          go();
-          return;
-        }
-      } catch (err) {}
-      if (Date.now() - started >= 800) {
-        deliver('image');
-        go();
-        return;
-      }
-      setTimeout(waitPixel, 40);
-    })();
+    } catch (err) {}
+    // Let the browser follow the original checkout URL immediately.
+    // Do not preventDefault() or wait for the analytics network request.
   }, true);
 })();
 </script>
